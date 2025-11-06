@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import { SplashPage } from "./components/Splashpage";
 
 function App() {
