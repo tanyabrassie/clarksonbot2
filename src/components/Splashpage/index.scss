@@ -1,0 +1,27 @@
+.splash {
+  position: fixed;
+  inset: 0; /* cover the viewport edge-to-edge */
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #1d1b1e;
+  background-repeat: repeat;
+  background-size: 80px 80px; /* size of each tiled bot */
+  background-position: 0 0;
+  display: grid;
+  place-items: center;
+}
+
+.splash__center {
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+}
+
+.splash__bot {
+  width: 180px;
+  height: 180px;
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.45));
+}
+
+
+

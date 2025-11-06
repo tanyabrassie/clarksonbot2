@@ -1,4 +1,4 @@
-import "./index.css";
+import "./index.scss";
 import clarksonBotUrl from "../../assets/clarkson-bot.gif";
 
 export const SplashPage = () => {
