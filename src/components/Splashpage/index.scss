@@ -4,24 +4,74 @@
   min-height: 100vh;
   width: 100vw;
   background-color: #1d1b1e;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.splash__bg {
+  position: absolute;
+  inset: 0;
   background-repeat: repeat;
   background-size: 80px 80px; /* size of each tiled bot */
   background-position: 0 0;
-  display: grid;
-  place-items: center;
+  opacity: 0;
+  filter: invert(0);
+  will-change: opacity, filter;
+  animation: splashFade 4000ms ease-in-out forwards;
+  animation-iteration-count: 2;
+  z-index: 0;
 }
 
 .splash__center {
   display: grid;
   place-items: center;
   padding: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
 .splash__bot {
   width: 180px;
   height: 180px;
   filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.45));
+  opacity: 0;
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) scale(1);
+  transform-origin: bottom center;
+  animation: botFadeIn 3000ms ease-in-out forwards;
+  animation-delay: 7600ms; /* slight overlap with end of splash cycles */
 }
 
+@keyframes splashFade {
+  0% {
+    opacity: 0;
+    filter: invert(0);
+  }
+  25% {
+    filter: invert(1);
+  }
+  40% {
+    opacity: 1;
+  }
+  75% {
+    filter: invert(0);
+  }
+  100% {
+    opacity: 0;
+    filter: invert(0);
+  }
+}
 
-
+@keyframes botFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(5);
+  }
+}
