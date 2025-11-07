@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Header } from "./components/Header/Header";
 import { SplashPage } from "./components/Splashpage";
-import { LeftSideBar } from "./components/LeftSideBar";
+import { LeftSideBar } from "./components/LeftSideBar/LeftSideBar";
 import { MainGrid } from "./components/MainGrid";
-import { ClarksonStats } from "./components/ClarksonStats/ClarksonStats";
+import { ClarksonStats } from "./components/LeftSideBar/ClarksonStats/ClarksonStats";
+import { ClarksonAvatar } from "./components/LeftSideBar/ClarksonAvatar/ClarksonAvatar";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -27,6 +28,7 @@ function App() {
       <MainGrid>
         <LeftSideBar>
           <ClarksonStats />
+          <ClarksonAvatar />
         </LeftSideBar>
       </MainGrid>
     </>

@@ -46,11 +46,49 @@
   animation-delay: 14200ms;
 }
 
+.clarksonbotTextWrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .clarksonbotText {
   font-size: 52px;
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 16px;
+  animation: sparkleAnimation 5s ease-in-out 1;
+  pointer-events: none;
+  opacity: 0;
+  filter: hue-rotate(180deg);
+
+  &[data-sparkle="1"] {
+    top: -5px;
+    left: 10%;
+    animation-delay: 15140ms;
+  }
+
+  &[data-sparkle="2"] {
+    top: 10px;
+    right: 15%;
+    animation-delay: 15240ms;
+  }
+
+  &[data-sparkle="3"] {
+    bottom: 5px;
+    left: 60%;
+    animation-delay: 15340ms;
+  }
+
+  &[data-sparkle="4"] {
+    top: -10px;
+    right: 5%;
+    animation-delay: 15440ms;
+  }
 }
 
 @keyframes theRotate {
@@ -62,5 +100,40 @@
   }
   100% {
     transform: rotate(335deg);
+  }
+}
+
+@keyframes sparkleAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+  30% {
+    opacity: 0;
+    transform: scale(0) rotate(360deg);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1) rotate(540deg);
+  }
+  60% {
+    opacity: 0;
+    transform: scale(0) rotate(720deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1) rotate(900deg);
+  }
+  90% {
+    opacity: 0;
+    transform: scale(0) rotate(1080deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(1080deg);
   }
 }
