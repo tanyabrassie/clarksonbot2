@@ -7,9 +7,11 @@
   display: grid;
   place-items: center;
   overflow: hidden;
+  animation: splashFadeOut 2000ms ease-in-out forwards;
+  animation-delay: 13640ms; /* After title translate completes (12140ms + 1500ms) */
 }
 
-.splash__bg {
+.splashBg {
   position: absolute;
   inset: 0;
   background-repeat: repeat;
@@ -23,7 +25,7 @@
   z-index: 0;
 }
 
-.splash__title {
+.splashTitle {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -44,24 +46,24 @@
   animation-delay: 12140ms; /* After BOT appears (11140ms) + 1 second */
 }
 
-.splash__title-word {
+.splashTitleWord {
   display: inline-block;
   opacity: 0;
 }
 
-.splash__title-word--1 {
+.splashTitleWord1 {
   animation: wordAppear1Cycle1 4000ms ease-in-out forwards,
     wordAppear1Cycle2 4000ms ease-in-out forwards 4000ms,
     wordAppear1Cycle3 4000ms ease-in-out forwards 8000ms;
 }
 
-.splash__title-word--2 {
+.splashTitleWord2 {
   animation: wordAppear2Cycle1 4000ms ease-in-out forwards,
     wordAppear2Cycle2 4000ms ease-in-out forwards 4000ms,
     wordAppear2Cycle3 4000ms ease-in-out forwards 8000ms;
 }
 
-.splash__title-word--3 {
+.splashTitleWord3 {
   animation: wordAppear3 4000ms ease-in-out forwards;
   animation-iteration-count: 1;
   animation-delay: 8000ms; /* Start on third cycle (after 2 cycles = 8000ms) */
@@ -70,7 +72,7 @@
   overflow: hidden;
 }
 
-.splash__center {
+.splashCenter {
   display: grid;
   place-items: center;
   padding: 2rem;
@@ -78,7 +80,7 @@
   z-index: 1;
 }
 
-.splash__bot {
+.splashBot {
   width: 180px;
   height: 180px;
   filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.45));
@@ -280,6 +282,15 @@
     opacity: 1;
     width: auto;
     margin-left: 1rem;
+  }
+}
+
+@keyframes splashFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
