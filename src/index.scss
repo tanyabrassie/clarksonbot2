@@ -1,3 +1,5 @@
+@import "./styles/colors";
+
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -134,6 +136,10 @@ table {
   border-spacing: 0;
 }
 
+#root {
+  width: 100%;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -150,11 +156,11 @@ table {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: $link-primary;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: $link-hover;
 }
 
 body {
