@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Header } from "./components/Header/Header";
-import { SplashPage } from "./components/Splashpage";
+// import { SplashPage } from "./components/Splashpage";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <Header />
-      {showSplash && <SplashPage />}
+      {showSplash}
     </>
   );
 }
