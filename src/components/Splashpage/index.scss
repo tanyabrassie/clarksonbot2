@@ -28,37 +28,46 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 4rem;
+  font-size: 10vw;
   font-weight: bold;
   color: #fff;
   z-index: 2;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 0;
   white-space: nowrap;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  animation: titleTranslateDown 1500ms ease-in-out forwards;
+  animation-delay: 12140ms; /* After BOT appears (11140ms) + 1 second */
 }
 
 .splash__title-word {
   display: inline-block;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
-    0 0 40px rgba(255, 255, 255, 0.6);
   opacity: 0;
-  transform: scale(0);
 }
 
 .splash__title-word--1 {
-  animation: wordAppear1 4000ms ease-in-out forwards;
-  animation-iteration-count: 2;
+  animation: wordAppear1Cycle1 4000ms ease-in-out forwards,
+    wordAppear1Cycle2 4000ms ease-in-out forwards 4000ms,
+    wordAppear1Cycle3 4000ms ease-in-out forwards 8000ms;
 }
 
 .splash__title-word--2 {
-  animation: wordAppear2 4000ms ease-in-out forwards;
-  animation-iteration-count: 2;
+  animation: wordAppear2Cycle1 4000ms ease-in-out forwards,
+    wordAppear2Cycle2 4000ms ease-in-out forwards 4000ms,
+    wordAppear2Cycle3 4000ms ease-in-out forwards 8000ms;
 }
 
 .splash__title-word--3 {
   animation: wordAppear3 4000ms ease-in-out forwards;
-  animation-iteration-count: 2;
-  margin-left: 1rem;
+  animation-iteration-count: 1;
+  animation-delay: 8000ms; /* Start on third cycle (after 2 cycles = 8000ms) */
+  margin-left: 0;
+  width: 0;
+  overflow: hidden;
 }
 
 .splash__center {
@@ -103,81 +112,183 @@
   }
 }
 
-@keyframes wordAppear1 {
+@keyframes wordAppear1Cycle1 {
   0% {
     opacity: 0;
-    transform: scale(0);
   }
   30% {
     opacity: 0;
-    transform: scale(0);
   }
-  48% {
+  60.9% {
     opacity: 0;
-    transform: scale(0);
   }
-  50% {
+  61% {
     opacity: 1;
-    transform: scale(1.2);
   }
-  52% {
-    transform: scale(1);
+  95% {
+    opacity: 1;
+  }
+  97% {
+    opacity: 0;
   }
   100% {
-    opacity: 1;
-    transform: scale(1);
+    opacity: 0;
   }
 }
 
-@keyframes wordAppear2 {
+@keyframes wordAppear1Cycle2 {
   0% {
     opacity: 0;
-    transform: scale(0);
   }
   30% {
     opacity: 0;
-    transform: scale(0);
   }
-  50% {
+  60.9% {
     opacity: 0;
-    transform: scale(0);
   }
-  53% {
+  61% {
     opacity: 1;
-    transform: scale(1.2);
   }
-  55% {
-    transform: scale(1);
+  95% {
+    opacity: 1;
+  }
+  97% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes wordAppear1Cycle3 {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  60.9% {
+    opacity: 0;
+  }
+  61% {
+    opacity: 1;
+  }
+  98.75% {
+    opacity: 1;
   }
   100% {
     opacity: 1;
-    transform: scale(1);
+  }
+}
+
+@keyframes wordAppear2Cycle1 {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  72.4% {
+    opacity: 0;
+  }
+  72.5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  97% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes wordAppear2Cycle2 {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  72.4% {
+    opacity: 0;
+  }
+  72.5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  97% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes wordAppear2Cycle3 {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  72.4% {
+    opacity: 0;
+  }
+  72.5% {
+    opacity: 1;
+  }
+  98.75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
 @keyframes wordAppear3 {
   0% {
     opacity: 0;
-    transform: scale(0);
+    width: 0;
+    margin-left: 0;
   }
   30% {
     opacity: 0;
-    transform: scale(0);
+    width: 0;
+    margin-left: 0;
   }
-  53% {
+  78.4% {
     opacity: 0;
-    transform: scale(0);
+    width: 0;
+    margin-left: 0;
   }
-  56% {
+  78.5% {
     opacity: 1;
-    transform: scale(1.2);
+    width: auto;
+    margin-left: 1rem;
   }
-  58% {
-    transform: scale(1);
+  95% {
+    opacity: 1;
+    width: auto;
+    margin-left: 1rem;
   }
   100% {
     opacity: 1;
-    transform: scale(1);
+    width: auto;
+    margin-left: 1rem;
+  }
+}
+
+@keyframes titleTranslateDown {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    transform: translate(-50%, calc(-50% + 40vh));
   }
 }
 
@@ -188,6 +299,6 @@
   }
   100% {
     opacity: 1;
-    transform: translateX(-50%) scale(5);
+    transform: translateX(-50%) scale(7);
   }
 }
