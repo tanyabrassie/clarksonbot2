@@ -171,4 +171,31 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: visible;
+  background-color: #faffff;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(0, 150, 136, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(0, 150, 136, 0.08) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: gridBreathe 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes gridBreathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }

@@ -41,7 +41,9 @@
   position: absolute;
   top: -10px;
   left: -30px;
-  transform: rotate(-25deg);
+  transform: rotate(0deg);
+  animation: theRotate 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 14200ms;
 }
 
 .clarksonbotText {
@@ -49,4 +51,16 @@
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+}
+
+@keyframes theRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(350deg);
+  }
+  100% {
+    transform: rotate(335deg);
+  }
 }
