@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { Header } from "./components/Header/Header";
 import { SplashPage } from "./components/Splashpage";
+import { LeftSideBar } from "./components/LeftSideBar";
+import { MainGrid } from "./components/MainGrid";
+import { ClarksonStats } from "./components/ClarksonStats/ClarksonStats";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -21,6 +24,11 @@ function App() {
     <>
       <Header />
       {showSplash && <SplashPage />}
+      <MainGrid>
+        <LeftSideBar>
+          <ClarksonStats />
+        </LeftSideBar>
+      </MainGrid>
     </>
   );
 }
