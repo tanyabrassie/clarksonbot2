@@ -138,6 +138,8 @@ table {
 
 #root {
   width: 100%;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 :root {
@@ -167,4 +169,6 @@ body {
   display: flex;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
