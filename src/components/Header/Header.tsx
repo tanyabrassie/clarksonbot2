@@ -1,9 +1,10 @@
 import styles from "./style.module.scss";
+import { HeaderContent } from "./HeaderContent";
 
 export const Header = () => {
   return (
     <header className={styles.headerContainer}>
-      <h1>hi</h1>
+      <HeaderContent />
     </header>
   );
 };
