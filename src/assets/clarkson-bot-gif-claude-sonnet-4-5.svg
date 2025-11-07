@@ -1,0 +1,53 @@
+<svg width="200" height="280" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Antenna -->
+  <line x1="100" y1="20" x2="100" y2="40" stroke="#5B6B7C" stroke-width="3" stroke-linecap="round"/>
+  <line x1="85" y1="25" x2="95" y2="35" stroke="#5B6B7C" stroke-width="2" stroke-linecap="round"/>
+  <line x1="115" y1="25" x2="105" y2="35" stroke="#5B6B7C" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Head -->
+  <rect x="70" y="40" width="60" height="60" rx="15" fill="#5B6B7C"/>
+  
+  <!-- Eyes -->
+  <circle cx="85" cy="65" r="8" fill="#2C3E50"/>
+  <circle cx="115" cy="65" r="8" fill="#2C3E50"/>
+  <circle cx="87" cy="63" r="3" fill="white"/>
+  <circle cx="117" cy="63" r="3" fill="white"/>
+  
+  <!-- Smile -->
+  <path d="M 85 80 Q 100 90 115 80" stroke="#2C3E50" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Left Arm -->
+  <g>
+    <line x1="70" y1="120" x2="40" y2="110" stroke="#7C8DA0" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="35" cy="110" r="10" fill="#8A9FB3"/>
+  </g>
+  
+  <!-- Right Arm -->
+  <g>
+    <line x1="130" y1="120" x2="160" y2="110" stroke="#7C8DA0" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="165" cy="110" r="10" fill="#8A9FB3"/>
+  </g>
+  
+  <!-- Body -->
+  <defs>
+    <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8A9FB3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5B6B7C;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect x="60" y="105" width="80" height="90" rx="10" fill="url(#bodyGradient)"/>
+  
+  <!-- Body Lights/Buttons -->
+  <circle cx="100" cy="130" r="6" fill="#2C3E50"/>
+  <circle cx="100" cy="150" r="6" fill="#2C3E50"/>
+  <circle cx="100" cy="170" r="6" fill="#2C3E50"/>
+  
+  <!-- Neck connector -->
+  <rect x="90" y="100" width="20" height="10" fill="#5B6B7C"/>
+  
+  <!-- Model attribution text -->
+  <text x="100" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#5B6B7C">
+    Created by Claude Sonnet 4.5
+  </text>
+</svg>
+

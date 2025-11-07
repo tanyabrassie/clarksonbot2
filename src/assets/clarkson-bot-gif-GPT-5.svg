@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Clarkson Bot GIF (SVG)</title>
+  <desc id="desc">SVG wrapper embedding the original clarkson-bot.gif with model attribution.</desc>
+
+  <!-- Embedded GIF -->
+  <image href="./clarkson-bot.gif" x="0" y="0" width="512" height="512" preserveAspectRatio="xMidYMid meet" />
+
+  <!-- Bottom attribution background -->
+  <rect x="0" y="480" width="512" height="32" fill="#000000" fill-opacity="0.55" />
+
+  <!-- Model attribution text -->
+  <text x="50%" y="502" text-anchor="middle" font-size="14" fill="#FFFFFF" font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+    Created by GPT-5
+  </text>
+</svg>
+
+
