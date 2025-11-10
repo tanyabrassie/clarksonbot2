@@ -12,6 +12,7 @@
   transition: all 0.25s ease;
 
   &:hover {
+    cursor: pointer;
     border-radius: 10px;
     .buttonGhost {
       background-color: rgb(3, 255, 137);

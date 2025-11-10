@@ -50,6 +50,17 @@
 .clarksonbotTextWrapper {
   position: relative;
   display: inline-block;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  color: white;
+  transition: color 0.3s ease-out;
+
+  &:hover {
+    color: #cdff2c;
+  }
 }
 
 .clarksonbotText {
