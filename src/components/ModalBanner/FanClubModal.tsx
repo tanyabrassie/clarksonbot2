@@ -1,4 +1,6 @@
 import styles from "./styles.module.scss";
+import clarksonBotUrl from "../../assets/clarkson-bot.gif";
+import { Button } from "../Buttons/Button";
 
 interface FanClubModalProps {
   isOpen?: boolean;
@@ -10,26 +12,34 @@ export const FanClubModal = ({ isOpen = true, onClose }: FanClubModalProps) => {
 
   return (
     <div className={styles.modalBackdrop}>
-      <div className={styles.modalContent}>
-        <button
-          className={styles.closeButton}
-          onClick={onClose}
-          aria-label="Close modal"
-        >
-          ✕
-        </button>
+      <div className={styles.modalContainer}>
+        <img
+          className={styles.clarksonBotGif}
+          src={clarksonBotUrl}
+          alt="Clarkson Bot"
+          decoding="async"
+        />
+        <div className={styles.modalContent}>
+          <button
+            className={styles.closeButton}
+            onClick={onClose}
+            aria-label="Close modal"
+          >
+            ✕
+          </button>
 
-        <div className={styles.modalBody}>
-          <h2 className={styles.modalTitle}>EXCLUSIVE OFFER</h2>
+          <div className={styles.modalBody}>
+            <h2 className={styles.modalTitle}>EXCLUSIVE OFFER</h2>
 
-          <div className={styles.decorativeBox} />
+            <div className={styles.decorativeBox} />
 
-          <p className={styles.modalDescription}>
-            Join the Clarkson Bot Fan Club and get exclusive access to premium
-            features!
-          </p>
+            <p className={styles.modalDescription}>
+              Join the Clarkson Bot Fan Club and get exclusive access to premium
+              features!
+            </p>
 
-          <button className={styles.ctaButton}>Join Now</button>
+            <Button variant="primary">Join Now</Button>
+          </div>
         </div>
       </div>
     </div>

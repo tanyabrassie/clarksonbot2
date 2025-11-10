@@ -6,6 +6,7 @@ import { MainGrid } from "./components/MainGrid";
 import { ClarksonStats } from "./components/LeftSideBar/ClarksonStats/ClarksonStats";
 import { ClarksonAvatar } from "./components/LeftSideBar/ClarksonAvatar/ClarksonAvatar";
 import { FanClubModal } from "./components/ModalBanner/FanClubModal";
+import { BottomBanner } from "./components/BottomBanner/BottomBanner";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -35,7 +36,10 @@ function App() {
 
   return (
     <>
+      <BottomBanner />
       <Header />
+
+      <BottomBanner />
       {showSplash && <SplashPage />}
       {showModal && <FanClubModal onClose={() => setShowModal(false)} />}
       <MainGrid>

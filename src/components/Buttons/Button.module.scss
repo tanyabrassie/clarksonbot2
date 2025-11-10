@@ -1,0 +1,33 @@
+@import "../../styles/colors";
+
+.button {
+  position: relative;
+  font-family: "Gabarito", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  border: 3px solid black;
+  background-color: white;
+  padding: 15px 20px;
+  font-size: 20px;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+
+  &:hover {
+    border-radius: 10px;
+    .buttonGhost {
+      background-color: rgb(3, 255, 137);
+      border-radius: 10px;
+    }
+  }
+}
+
+.buttonGhost {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid black;
+  top: -15px;
+  left: -15px;
+  background-color: rgb(179, 255, 3);
+  z-index: -1;
+  transition: all 0.25s ease;
+}

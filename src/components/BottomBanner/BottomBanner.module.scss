@@ -1,0 +1,11 @@
+@import "../../styles/colors";
+
+.bottomBanner {
+  height: 40px;
+  background-image: url("../../assets/digital-bg.gif");
+  background-repeat: repeat;
+  background-size: 180px 120px;
+  pointer-events: none;
+  filter: hue-rotate(167deg) contrast(8.5);
+  width: calc(100vw + 200vw);
+}
