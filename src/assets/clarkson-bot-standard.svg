@@ -1,0 +1,53 @@
+<svg viewBox="0 0 128 160" xmlns="http://www.w3.org/2000/svg">
+  <!-- Antenna Left -->
+  <line x1="52" y1="8" x2="44" y2="0" stroke="#3a3a3a" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Antenna Right -->
+  <line x1="76" y1="8" x2="84" y2="0" stroke="#3a3a3a" stroke-width="1.5" stroke-linecap="round"/>
+  
+  <!-- Head -->
+  <rect x="32" y="8" width="64" height="44" rx="6" fill="#2a2a2a"/>
+  
+  <!-- Left Ear -->
+  <rect x="16" y="20" width="14" height="28" rx="4" fill="#758aa3"/>
+  
+  <!-- Right Ear -->
+  <rect x="98" y="20" width="14" height="28" rx="4" fill="#758aa3"/>
+  
+  <!-- Left Eye -->
+  <circle cx="44" cy="28" r="6" fill="#ffffff"/>
+  <circle cx="44" cy="28" r="3.5" fill="#000000"/>
+  
+  <!-- Right Eye -->
+  <circle cx="84" cy="28" r="6" fill="#ffffff"/>
+  <circle cx="84" cy="28" r="3.5" fill="#000000"/>
+  
+  <!-- Mouth -->
+  <path d="M 48 38 Q 64 44 80 38" stroke="#1a1a1a" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  
+  <!-- Body -->
+  <rect x="20" y="54" width="88" height="78" rx="5" fill="#8fa5c4"/>
+  
+  <!-- Chest Panel -->
+  <rect x="32" y="66" width="64" height="44" rx="4" fill="#6b7a9a"/>
+  
+  <!-- Button 1 -->
+  <circle cx="48" cy="78" r="2.5" fill="#ffffff"/>
+  
+  <!-- Button 2 -->
+  <circle cx="64" cy="78" r="2.5" fill="#ffffff"/>
+  
+  <!-- Button 3 -->
+  <circle cx="80" cy="78" r="2.5" fill="#ffffff"/>
+  
+  <!-- Left Arm - Curved with elbow -->
+  <path d="M 24 68 Q 8 78 6 104 Q 5 110 10 113 Q 15 114 16 109 Q 18 85 28 72" stroke="#758aa3" stroke-width="5.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Right Arm - Curved with elbow -->
+  <path d="M 104 68 Q 120 78 122 104 Q 123 110 118 113 Q 113 114 112 109 Q 110 85 100 72" stroke="#758aa3" stroke-width="5.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Left Leg -->
+  <rect x="40" y="130" width="12" height="26" rx="2" fill="#758aa3"/>
+  
+  <!-- Right Leg -->
+  <rect x="76" y="130" width="12" height="26" rx="2" fill="#758aa3"/>
+</svg>

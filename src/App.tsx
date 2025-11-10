@@ -5,31 +5,41 @@ import { LeftSideBar } from "./components/LeftSideBar/LeftSideBar";
 import { MainGrid } from "./components/MainGrid";
 import { ClarksonStats } from "./components/LeftSideBar/ClarksonStats/ClarksonStats";
 import { ClarksonAvatar } from "./components/LeftSideBar/ClarksonAvatar/ClarksonAvatar";
+import { FanClubModal } from "./components/ModalBanner/FanClubModal";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     // Unmount splash after slide-down completes
     // Title translate completes at 13640ms, slide-down takes 1500ms
     // Add 200ms buffer to ensure animation fully completes
     // Total: 13640ms + 1500ms + 200ms = 15340ms
-    const timer = setTimeout(() => {
+    const splashTimer = setTimeout(() => {
       setShowSplash(false);
     }, 15340);
 
-    return () => clearTimeout(timer);
+    return () => clearTimeout(splashTimer);
+  }, []);
+
+  useEffect(() => {
+    // Show modal 3 seconds after splash page slides away
+    // Splash completes at 15340ms, add 3000ms = 18340ms
+    const modalTimer = setTimeout(() => {
+      setShowModal(true);
+    }, 18340);
+
+    return () => clearTimeout(modalTimer);
   }, []);
 
   return (
     <>
       <Header />
       {showSplash && <SplashPage />}
+      {showModal && <FanClubModal onClose={() => setShowModal(false)} />}
       <MainGrid>
-        <LeftSideBar>
-          <ClarksonStats />
-          <ClarksonAvatar />
-        </LeftSideBar>
+        <LeftSideBar stats={<ClarksonStats />} avatar={<ClarksonAvatar />} />
       </MainGrid>
     </>
   );

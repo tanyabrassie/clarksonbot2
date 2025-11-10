@@ -5,4 +5,16 @@
 
   display: flex;
   flex-direction: column;
+  gap: 0;
+}
+
+.statsWrapper {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.avatarWrapper {
+  flex: 0 0 auto;
+  margin-top: auto;
 }

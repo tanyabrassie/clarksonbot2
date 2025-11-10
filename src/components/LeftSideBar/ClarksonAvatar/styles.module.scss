@@ -1,10 +1,12 @@
 .avatarContainer {
-  width: 100%;
+  width: auto;
   padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: black;
+  max-height: 200px;
+  flex-shrink: 0;
 }
 
 .avatarCircle {
