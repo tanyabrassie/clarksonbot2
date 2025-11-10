@@ -1,30 +1,62 @@
-.container {
-  background-color: #cdff2c;
+.wrapper {
   position: relative;
-  padding: 40px;
-  min-height: 300px;
   width: 80%;
   margin: auto;
 
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background-color: black;
-    border-radius: 50%;
+  &:hover {
+    .circle {
+      background-color: #5400ff;
+    }
   }
+}
 
-  &::before {
-    top: -20px;
-    left: -20px;
-  }
+.insideContainer {
+  background-color: #cdff2c;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 40px;
+  min-height: 300px;
+  z-index: 1;
+}
 
-  &::after {
-    top: -20px;
-    right: -20px;
-  }
+.button {
+  justify-self: flex-end;
+  margin-top: Auto;
+}
+
+.circle {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  border-radius: 50%;
+  z-index: 3;
+  transition: all 0.24s ease-in-out;
+}
+
+.circleTopLeft {
+  @extend .circle;
+  top: -15px;
+  left: -15px;
+}
+
+.circleTopRight {
+  @extend .circle;
+  top: -15px;
+  right: -15px;
+}
+
+.circleBottomLeft {
+  @extend .circle;
+  bottom: -15px;
+  left: -15px;
+}
+
+.circleBottomRight {
+  @extend .circle;
+  bottom: -15px;
+  right: -15px;
 }
 
 .container::before {
@@ -32,15 +64,51 @@
     calc(100% + 40px) calc(100% + 280px) 0 black;
 }
 
-.topLabel {
+@keyframes peekDown {
+  0%,
+  100% {
+    transform: translateY(-25px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes peekUp {
+  0%,
+  100% {
+    transform: translateY(25px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+}
+
+.topPeekLabel {
   position: absolute;
-  top: 15px;
-  left: 50%;
+  top: 0;
+  left: 20%;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: monospace;
+  letter-spacing: 2px;
+  animation: peekDown 2s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bottomPeekLabel {
+  position: absolute;
+  bottom: 0;
+  right: 20%;
   transform: translateX(-50%);
   font-weight: bold;
   font-size: 18px;
   font-family: monospace;
   letter-spacing: 2px;
+  animation: peekUp 2s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .bottomLabel {

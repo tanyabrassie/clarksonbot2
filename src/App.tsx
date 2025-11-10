@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header/Header";
 import { SplashPage } from "./components/Splashpage";
 import { LeftSideBar } from "./components/LeftSideBar/LeftSideBar";
@@ -11,6 +12,7 @@ import { BuildABot } from "./components/BuildABotAd/BuildABot";
 import { CenterContent } from "./components/CenterContent/CenterContent";
 import { RightContent } from "./components/RightContent/RightContent";
 import { Marquee } from "./components/Marquee/Marquee";
+import { ClarksonGenerator } from "./pages/ClarksonGenerator";
 
 function App() {
   const [showSplash, setShowSplash] = useState(false);
@@ -45,11 +47,26 @@ function App() {
       {showSplash && <SplashPage />}
       {showModal && <FanClubModal onClose={() => setShowModal(false)} />}
       <MainGrid>
-        <LeftSideBar stats={<ClarksonStats />} avatar={<ClarksonAvatar />} />
-        <CenterContent>
-          <BuildABot />
-        </CenterContent>
-        <RightContent></RightContent>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <LeftSideBar
+                  stats={<ClarksonStats />}
+                  avatar={<ClarksonAvatar />}
+                />
+                <CenterContent>
+                  <BuildABot />
+                </CenterContent>
+                <RightContent></RightContent>
+                <Marquee />
+                <BottomBanner />
+              </>
+            }
+          />
+          <Route path="/clarkson-generator" element={<ClarksonGenerator />} />
+        </Routes>
       </MainGrid>
       <Marquee />
       <BottomBanner />
