@@ -36,10 +36,7 @@ function App() {
 
   return (
     <>
-      <BottomBanner />
       <Header />
-
-      <BottomBanner />
       {showSplash && <SplashPage />}
       {showModal && <FanClubModal onClose={() => setShowModal(false)} />}
       <MainGrid>

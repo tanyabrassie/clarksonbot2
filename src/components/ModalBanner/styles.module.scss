@@ -196,8 +196,14 @@
 @keyframes borderExpand {
   from {
     border-width: 0;
+    border-color: #a6a69a;
+  }
+  85% {
+    border-width: 35px;
+    border-color: #a6a69a;
   }
   to {
     border-width: 35px;
+    border-color: #9bff53;
   }
 }
