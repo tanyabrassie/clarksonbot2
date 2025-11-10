@@ -1,3 +1,17 @@
 .container {
+  width: 100%;
+  height: 500px;
+  background-color: rgb(88, 242, 88);
+  border: 1px solid black;
+  margin: auto;
+  box-sizing: border-box;
 }
 
+.adsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  grid-gap: 20px;
+  padding: 20px 20px;
+  box-sizing: border-box;
+}
