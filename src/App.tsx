@@ -7,9 +7,13 @@ import { ClarksonStats } from "./components/LeftSideBar/ClarksonStats/ClarksonSt
 import { ClarksonAvatar } from "./components/LeftSideBar/ClarksonAvatar/ClarksonAvatar";
 import { FanClubModal } from "./components/ModalBanner/FanClubModal";
 import { BottomBanner } from "./components/BottomBanner/BottomBanner";
+import { BuildABot } from "./components/BuildABotAd/BuildABot";
+import { CenterContent } from "./components/CenterContent/CenterContent";
+import { RightContent } from "./components/RightContent/RightContent";
+import { Marquee } from "./components/Marquee/Marquee";
 
 function App() {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -21,6 +25,7 @@ function App() {
       setShowSplash(false);
     }, 15340);
 
+    // 15340
     return () => clearTimeout(splashTimer);
   }, []);
 
@@ -41,7 +46,13 @@ function App() {
       {showModal && <FanClubModal onClose={() => setShowModal(false)} />}
       <MainGrid>
         <LeftSideBar stats={<ClarksonStats />} avatar={<ClarksonAvatar />} />
+        <CenterContent>
+          <BuildABot />
+        </CenterContent>
+        <RightContent></RightContent>
       </MainGrid>
+      <Marquee />
+      <BottomBanner />
     </>
   );
 }
