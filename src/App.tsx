@@ -60,8 +60,6 @@ function App() {
                   <BuildABot />
                 </CenterContent>
                 <RightContent></RightContent>
-                <Marquee />
-                <BottomBanner />
               </>
             }
           />
