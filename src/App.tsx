@@ -46,12 +46,12 @@ function App() {
       <Header />
       {showSplash && <SplashPage />}
       {showModal && <FanClubModal onClose={() => setShowModal(false)} />}
-      <MainGrid>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <MainGrid>
                 <LeftSideBar
                   stats={<ClarksonStats />}
                   avatar={<ClarksonAvatar />}
@@ -60,12 +60,12 @@ function App() {
                   <BuildABot />
                 </CenterContent>
                 <RightContent></RightContent>
-              </>
-            }
-          />
-          <Route path="/clarkson-generator" element={<ClarksonGenerator />} />
-        </Routes>
-      </MainGrid>
+              </MainGrid>
+            </>
+          }
+        />
+        <Route path="/clarkson-generator" element={<ClarksonGenerator />} />
+      </Routes>
       <Marquee />
       <BottomBanner />
     </>
