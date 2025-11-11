@@ -26,11 +26,13 @@ A React + TypeScript + Vite application for leaving tributes to Clarkson Bot.
 ### Setup
 
 1. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 2. **Run the development server**
+
    ```bash
    npm run dev
    ```
@@ -40,8 +42,56 @@ A React + TypeScript + Vite application for leaving tributes to Clarkson Bot.
 
 ### Local Development Notes
 
-- **Reading tributes**: Works out of the box (no authentication needed)
-- **Writing tributes**: Requires deploying to Netlify or running `netlify dev` locally with environment variables configured
+**For most development** (reading tributes, UI work):
+
+```bash
+npm run dev
+# Open http://localhost:5173
+```
+
+- ✅ Fast hot reload
+- ✅ Reading tributes works
+- ❌ Writing tributes won't work (needs serverless function)
+
+**For testing write functionality**:
+
+```bash
+# 1. Create .env file with your GITHUB_TOKEN (see below)
+# 2. Run Netlify dev
+npm run dev:netlify
+# Open http://localhost:8888
+```
+
+- ✅ Serverless functions work
+- ✅ Can test adding tributes
+- ⚠️ Note: The Netlify dev proxy may have routing issues, but the API endpoints work
+
+**To test write functionality without local setup:**
+Just deploy to Netlify and test there (recommended for initial setup)
+
+### Setting Up Local Environment Variables
+
+If you want to test write functionality locally:
+
+1. Create a `.env` file in the project root:
+
+   ```bash
+   touch .env
+   ```
+
+2. Add your GitHub token:
+
+   ```env
+   GITHUB_TOKEN=ghp_your_github_token_here
+   ```
+
+3. **Important**: The `.env` file is gitignored and will never be committed. This token is only used locally.
+
+4. Get a GitHub token:
+   - Go to https://github.com/settings/tokens
+   - "Generate new token (classic)"
+   - Select only "gist" scope
+   - Copy the token to your `.env` file
 
 ## Deployment to Netlify
 
@@ -58,6 +108,7 @@ A React + TypeScript + Vite application for leaving tributes to Clarkson Bot.
 **IMPORTANT**: You must set up a GitHub Personal Access Token for write functionality.
 
 1. **Create a GitHub Personal Access Token**:
+
    - Go to https://github.com/settings/tokens
    - Click "Generate new token (classic)"
    - Give it a name like "Netlify Clarkson Bot"
@@ -98,6 +149,7 @@ Browser (Client)                  Netlify Function (Server)           GitHub API
 ```
 
 **Key Security Features**:
+
 - ✅ GitHub token stored server-side only (Netlify environment variables)
 - ✅ Token never exposed to browser/client
 - ✅ Input validation on serverless function
@@ -132,9 +184,9 @@ If you are developing a production application, we recommend updating the config
 
 ```js
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(["dist"]),
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ["**/*.{ts,tsx}"],
     extends: [
       // Other configs...
 
@@ -149,40 +201,40 @@ export default defineConfig([
     ],
     languageOptions: {
       parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
         tsconfigRootDir: import.meta.dirname,
       },
       // other options...
     },
   },
-])
+]);
 ```
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
 // eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+import reactX from "eslint-plugin-react-x";
+import reactDom from "eslint-plugin-react-dom";
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(["dist"]),
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ["**/*.{ts,tsx}"],
     extends: [
       // Other configs...
       // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
+      reactX.configs["recommended-typescript"],
       // Enable lint rules for React DOM
       reactDom.configs.recommended,
     ],
     languageOptions: {
       parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
         tsconfigRootDir: import.meta.dirname,
       },
       // other options...
     },
   },
-])
+]);
 ```

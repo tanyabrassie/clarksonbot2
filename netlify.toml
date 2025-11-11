@@ -15,6 +15,13 @@
   # Node version
   NODE_VERSION = "18"
 
+
+# Local development configuration
+[dev]
+  command = "npm run dev"
+  targetPort = 5173
+  port = 8888
+
 # Redirect rules for SPA (Single Page Application)
 # This ensures all routes are handled by your React app
 [[redirects]]
