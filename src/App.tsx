@@ -13,7 +13,6 @@ import { CenterContent } from "./components/CenterContent/CenterContent";
 import { RightContent } from "./components/RightContent/RightContent";
 import { Marquee } from "./components/Marquee/Marquee";
 import { ClarksonGenerator } from "./pages/ClarksonGenerator";
-import { Signature } from "./components/Signature/Signature";
 
 function App() {
   const [showSplash, setShowSplash] = useState(false);
