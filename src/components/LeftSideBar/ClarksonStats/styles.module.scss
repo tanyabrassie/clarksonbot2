@@ -62,7 +62,8 @@
   transform: translate(-50%, -50%);
   left: 50%;
   cursor: grab;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition: box-shadow 0.2s ease, transform 0.2s ease,
+    animation-play-state 0.1s ease;
 
   &:hover {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
@@ -74,6 +75,10 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     transform: translate(-50%, -50%) scale(1.2);
   }
+}
+
+.lineContainer .node:hover {
+  animation-play-state: paused !important;
 }
 
 @keyframes moveNode1 {

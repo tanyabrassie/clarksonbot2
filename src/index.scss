@@ -199,3 +199,39 @@ body::before {
     opacity: 0.4;
   }
 }
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff66ff, $color-magenta, #9d00ff);
+  border-radius: 6px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    lighten($color-magenta, 10%),
+    $color-magenta,
+    darken($color-magenta, 10%)
+  );
+  background-clip: content-box;
+}
+
+/* Hide scrollbar on outer container */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
