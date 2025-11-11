@@ -12,8 +12,8 @@
   publish = "dist"
 
 [build.environment]
-  # Node version
-  NODE_VERSION = "18"
+  # Node version (must match what your packages require)
+  NODE_VERSION = "22"
 
 
 # Local development configuration
