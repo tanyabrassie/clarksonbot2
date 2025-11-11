@@ -4,11 +4,8 @@
   display: grid;
   grid-template-columns: 20% 80%;
   background-color: #f6fcff;
-  background-image: linear-gradient(
-      rgba(32, 220, 67, 0.68) 1px,
-      transparent 1px
-    ),
-    linear-gradient(90deg, rgb(229 79 255 / 46%) 1px, transparent 1px);
+  background-image: linear-gradient(rgb(86 255 117 / 68%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(98 255 79 / 46%) 1px, transparent 1px);
   background-size: 20px 20px;
   max-width: 1600px;
   margin: Auto;
@@ -17,11 +14,13 @@
 }
 
 .toolBar {
+  position: sticky;
+  top: 30px;
   width: 80%;
   container-type: inline-size;
   margin: 25px auto;
   background-color: #000000b5;
-  height: 100%;
+  height: max-content;
   border-radius: 22px;
   color: white;
   font-family: monospace;
@@ -73,7 +72,7 @@
 }
 
 .exportButton {
-  margin: 30px 7px 0 30px;
+  margin: 40px 0px 0 30px;
 }
 
 .colorOptions {

@@ -109,7 +109,9 @@ const ToolBar = ({
           />
         </div>
       </div>
-      <Button onClick={onExport}>EXPORT BOT</Button>
+      <Button className={styles.exportButton} onClick={onExport}>
+        EXPORT BOT
+      </Button>
     </div>
   );
 };
@@ -156,7 +158,7 @@ const MainContainer = ({
 
             // Add drop shadow to newly selected element
             (element as SVGElement).style.filter =
-              "drop-shadow(0 0 6px rgba(20, 223, 64, 0.942))";
+              "drop-shadow(0 0 12px rgba(18, 180, 50, 1)) drop-shadow(0 0 20px rgba(18, 180, 50, 0.6))";
             previousSelectedRef.current = element;
             selectedElementRef.current = element;
 

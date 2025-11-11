@@ -6,7 +6,7 @@
       .st0 {
         fill: #ccc;
         stroke: #ccc;
-        stroke-width: .5px;
+        stroke-width: 10px;
       }
 
       .st0, .st1, .st2 {
@@ -43,7 +43,7 @@
 
       .st1 {
         stroke: #333;
-        stroke-width: 14px;
+        stroke-width: 10px;
       }
 
       .st1, .st10 {
@@ -53,7 +53,7 @@
       .st2 {
         fill: #aeb7d5;
         stroke: #aeb7d5;
-        stroke-width: 7px;
+        stroke-width: 10px;
       }
 
       .st11 {
