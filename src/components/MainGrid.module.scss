@@ -1,10 +1,9 @@
 .mainGrid {
-  height: calc(100vh - 230px);
   display: grid;
   grid-template-columns: 25% 60% 15%;
   background-color: #f6fffb;
   max-width: 1600px;
   margin: Auto;
-
-  // overflow-y: scroll;
+  height: calc(100vh - 210px);
+  overflow-y: scroll;
 }

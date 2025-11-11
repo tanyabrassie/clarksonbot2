@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./BuildABot.module.scss";
 import { Button } from "../Buttons/Button";
+import customizedClarksonsImg from "../../assets/customizedClarksons.png";
 
 export const BuildABot = () => {
   const navigate = useNavigate();
@@ -15,13 +16,18 @@ export const BuildABot = () => {
       <div className={styles.circleTopRight}></div>
       <div className={styles.topPeekLabel}>NEW</div>
       <div className={styles.insideContainer}>
-        <div></div>
-        <span>New!</span>
-        <span>Version: 1.5</span>
-        <h1>Build-A-Bot</h1>
-        <h2>Clarkson Bot Your Way!</h2>
+        <img
+          src={customizedClarksonsImg}
+          alt="Customized Clarksons"
+          className={styles.image}
+        />
+        <span className={styles.version}>Version: 2.0.0</span>
+        <h1 className={styles.header}>Build-A-Clarkson</h1>
+        <h2 className={styles.headerExclamation}>Clarkson Bot Your Way!</h2>
 
-        <div>The next generation Clarkson Bot companion.</div>
+        <div className={styles.slogan}>
+          The next generation Clarkson Bot companion.
+        </div>
 
         <Button
           className={styles.button}

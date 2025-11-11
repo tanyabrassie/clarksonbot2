@@ -5,9 +5,52 @@
 
   &:hover {
     .circle {
-      background-color: #5400ff;
+      background-color: #38ff1b;
+      border: 3px solid black;
     }
   }
+}
+
+.header {
+  font-size: 3vw;
+  text-align: center;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.slogan {
+  padding: 20px 0 40px 0;
+  text-align: center;
+  font-family: monospace;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.headerExclamation {
+  position: absolute;
+  right: 50px;
+  transform: rotate(30deg);
+  top: 120px;
+  font-size: 16px;
+  background-color: blue;
+  font-family: monospace;
+  font-weight: 600;
+  padding: 5px;
+  color: white;
+}
+
+.version {
+  position: absolute;
+  left: 0;
+  height: 20px;
+  background-color: black;
+  font-family: monospace;
+  display: flex;
+  padding: 5px 15px;
+  align-items: center;
+  color: white;
+  font-weight: 600;
 }
 
 .insideContainer {
@@ -17,7 +60,19 @@
   position: relative;
   padding: 40px;
   min-height: 300px;
+  box-shadow: 13px -12px 21px -9px #38ff1b;
   z-index: 1;
+  transition: all 0.5s ease-in-out;
+
+  &:hover {
+    box-shadow: -12px 12px 11px -7px #0c0c0c;
+  }
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
 }
 
 .button {
@@ -33,6 +88,7 @@
   border-radius: 50%;
   z-index: 3;
   transition: all 0.24s ease-in-out;
+  border: 3px solid transparent;
 }
 
 .circleTopLeft {

@@ -10,6 +10,12 @@ interface FanClubModalProps {
 export const FanClubModal = ({ isOpen = true, onClose }: FanClubModalProps) => {
   if (!isOpen) return null;
 
+  const handleClose = () => {
+    setTimeout(() => {
+      onClose?.(false);
+    }, 1000);
+  };
+
   return (
     <div className={styles.modalBackdrop}>
       <div className={styles.modalContainer}>
@@ -22,7 +28,7 @@ export const FanClubModal = ({ isOpen = true, onClose }: FanClubModalProps) => {
         <div className={styles.modalContent}>
           <button
             className={styles.closeButton}
-            onClick={onClose}
+            onClick={handleClose}
             aria-label="Close modal"
           >
             ✕
