@@ -1,11 +1,23 @@
 import styles from "./ClarksonGenerator.module.scss";
+import ClarksonBotSvg from "../assets/clarksonbot.svg?react";
 
-export const ClarksonGenerator = () => {
+const ToolBar = () => {
+  return <div className={styles.toolBar}>Toolbar</div>;
+};
+
+const MainContainer = () => {
   return (
-    <div className={styles.container}>
-      <h1>Clarkson Generator</h1>
-      <p>Build your own Clarkson Bot here!</p>
+    <div className={styles.mainContainer}>
+      <ClarksonBotSvg />
     </div>
   );
 };
 
+export const ClarksonGenerator = () => {
+  return (
+    <div className={styles.container}>
+      <ToolBar />
+      <MainContainer />
+    </div>
+  );
+};
