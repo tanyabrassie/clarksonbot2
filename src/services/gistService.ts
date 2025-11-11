@@ -3,35 +3,35 @@
  *
  * This service handles reading and writing tributes to/from a GitHub Gist.
  *
- * SECURITY:
- * - Reading is done directly from the public gist (no authentication needed)
- * - Writing is done through a Netlify serverless function that keeps the GitHub token secure
- * - The token is stored server-side only, never exposed to the client
+ * SECURITY & CACHING:
+ * - Both reads and writes use Netlify serverless functions
+ * - Serverless functions use GitHub API (not raw URL) to avoid aggressive caching
+ * - Write function uses GitHub token stored server-side only (never exposed to client)
+ * - Read function is public but goes through serverless function for fresh data
  */
 
 import type { Tribute, TributesData } from "../types/tribute";
 
-const GIST_ID = "4b22b5fe7fb33a8ba84d99ec105f1938";
-const RAW_GIST_URL = `https://gist.githubusercontent.com/tanyabrassie/${GIST_ID}/raw/clarksonTributes.json`;
-
 // Helper to get the correct function URL based on environment
-function getNetlifyFunctionURL(): string {
+function getNetlifyFunctionURL(functionName: string): string {
   // In development on Vite port, point to Netlify dev server
   if (typeof window !== "undefined" && window.location.port === "5173") {
-    return "http://localhost:8888/.netlify/functions/add-tribute";
+    return `http://localhost:8888/.netlify/functions/${functionName}`;
   }
   // In production or on Netlify dev port, use relative URL
-  return "/.netlify/functions/add-tribute";
+  return `/.netlify/functions/${functionName}`;
 }
 
 /**
  * Fetches all tributes from the GitHub Gist
+ *
+ * Uses serverless function instead of raw URL to avoid GitHub's aggressive caching
  */
 export async function fetchTributes(): Promise<Tribute[]> {
   try {
-    // Add cache-busting parameter to avoid GitHub's aggressive caching
-    const cacheBuster = `?cb=${Date.now()}`;
-    const response = await fetch(RAW_GIST_URL + cacheBuster);
+    const response = await fetch(getNetlifyFunctionURL("get-tributes"), {
+      cache: "no-store", // Prevent browser caching
+    });
 
     if (!response.ok) {
       throw new Error(`Failed to fetch tributes: ${response.statusText}`);
@@ -56,7 +56,7 @@ export async function addTribute(
   author: string
 ): Promise<void> {
   try {
-    const response = await fetch(getNetlifyFunctionURL(), {
+    const response = await fetch(getNetlifyFunctionURL("add-tribute"), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
