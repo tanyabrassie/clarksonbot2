@@ -9,6 +9,7 @@ interface ToolBarProps {
   strokeColor: string;
   onFillColorChange: (color: string) => void;
   onStrokeColorChange: (color: string) => void;
+  onExport: () => void;
 }
 
 const ToolBar = ({
@@ -17,6 +18,7 @@ const ToolBar = ({
   strokeColor,
   onFillColorChange,
   onStrokeColorChange,
+  onExport,
 }: ToolBarProps) => {
   const [showFillPicker, setShowFillPicker] = useState(false);
   const colorInputRef = useRef<HTMLInputElement>(null);
@@ -107,7 +109,7 @@ const ToolBar = ({
           />
         </div>
       </div>
-      <Button className={styles.exportButton}>EXPORT BOT</Button>
+      <Button onClick={onExport}>EXPORT BOT</Button>
     </div>
   );
 };
@@ -118,6 +120,7 @@ interface MainContainerProps {
   setFillColor: (color: string) => void;
   setStrokeColor: (color: string) => void;
   selectedElementRef: React.MutableRefObject<Element | null>;
+  svgRef: React.RefObject<SVGSVGElement | null>;
 }
 
 const MainContainer = ({
@@ -125,8 +128,8 @@ const MainContainer = ({
   setFillColor,
   setStrokeColor,
   selectedElementRef,
+  svgRef,
 }: MainContainerProps) => {
-  const svgRef = useRef<SVGSVGElement>(null);
   const previousSelectedRef = useRef<Element | null>(null);
 
   useEffect(() => {
@@ -251,7 +254,13 @@ const MainContainer = ({
         });
       };
     }
-  }, [setSelectedElement, setFillColor, setStrokeColor, selectedElementRef]);
+  }, [
+    setSelectedElement,
+    setFillColor,
+    setStrokeColor,
+    selectedElementRef,
+    svgRef,
+  ]);
 
   return (
     <div className={styles.mainContainer}>
@@ -266,6 +275,7 @@ export const ClarksonGenerator = () => {
   const [strokeColor, setStrokeColor] = useState<string>("#d946ef");
   const [showReveal, setShowReveal] = useState(true);
   const selectedElementRef = useRef<Element | null>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
     // Remove the reveal animation after it completes (2 seconds)
@@ -320,6 +330,38 @@ export const ClarksonGenerator = () => {
     }
   };
 
+  const handleExportSvg = () => {
+    if (!svgRef.current) return;
+
+    // Clone the SVG to avoid modifying the original
+    const svgClone = svgRef.current.cloneNode(true) as SVGElement;
+
+    // Remove any added styles/classes that shouldn't be in the export
+    svgClone.querySelectorAll("*").forEach((element) => {
+      (element as SVGElement).style.cursor = "";
+      (element as SVGElement).style.transition = "";
+      (element as SVGElement).style.filter = "";
+    });
+
+    // Serialize the SVG to a string
+    const serializer = new XMLSerializer();
+    let svgString = serializer.serializeToString(svgClone);
+
+    // Add XML declaration and ensure proper formatting
+    svgString = '<?xml version="1.0" encoding="UTF-8"?>\n' + svgString;
+
+    // Create a blob and download it
+    const blob = new Blob([svgString], { type: "image/svg+xml" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "clarkson-bot-custom.svg";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <>
       {showReveal && <div className={styles.circularReveal}></div>}
@@ -330,6 +372,7 @@ export const ClarksonGenerator = () => {
           strokeColor={strokeColor}
           onFillColorChange={handleFillColorChange}
           onStrokeColorChange={handleStrokeColorChange}
+          onExport={handleExportSvg}
         />
         <MainContainer
           selectedElement={selectedElement}
@@ -337,6 +380,7 @@ export const ClarksonGenerator = () => {
           setFillColor={setFillColor}
           setStrokeColor={setStrokeColor}
           selectedElementRef={selectedElementRef}
+          svgRef={svgRef}
         />
       </div>
     </>
