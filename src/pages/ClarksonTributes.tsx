@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { ClarksonTributes as ClarksonTributesComponent } from '../components/ClarksonTributes/ClarksonTributes';
-import styles from './ClarksonTributes.module.scss';
+import { useState, useEffect } from "react";
+import { ClarksonTributes as ClarksonTributesComponent } from "../components/ClarksonTributes/ClarksonTributes";
+import styles from "./ClarksonTributes.module.scss";
 
 export const ClarksonTributes = () => {
   const [showReveal, setShowReveal] = useState(true);
@@ -23,4 +23,3 @@ export const ClarksonTributes = () => {
     </>
   );
 };
-

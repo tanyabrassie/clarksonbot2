@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react';
-import styles from './ClarksonTributes.module.scss';
-import type { Tribute } from '../../types/tribute';
-import { fetchTributes, addTribute } from '../../services/gistService';
-import candleIcon from '../../assets/candle.svg';
-import bowIcon from '../../assets/bow.svg';
-import moneyIcon from '../../assets/money.svg';
+import { useState, useEffect } from "react";
+import styles from "./ClarksonTributes.module.scss";
+import type { Tribute } from "../../types/tribute";
+import { fetchTributes, addTribute } from "../../services/gistService";
+import candleIcon from "../../assets/candle.svg";
+import bowIcon from "../../assets/bow.svg";
+import moneyIcon from "../../assets/money.svg";
 
-const tributeIcons: Record<Tribute['type'], string> = {
+const tributeIcons: Record<Tribute["type"], string> = {
   candle: candleIcon,
   bow: bowIcon,
   money: moneyIcon,
 };
 
-const tributeLabels: Record<Tribute['type'], string> = {
-  candle: 'Candle',
-  bow: 'Bow',
-  money: 'Money',
+const tributeLabels: Record<Tribute["type"], string> = {
+  candle: "Candle",
+  bow: "Bow",
+  money: "Money",
 };
 
 export const ClarksonTributes = () => {
@@ -23,13 +23,14 @@ export const ClarksonTributes = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  
+
   // Form state
-  const [selectedType, setSelectedType] = useState<Tribute['type']>('candle');
-  const [authorName, setAuthorName] = useState('');
+  const [selectedType, setSelectedType] = useState<Tribute["type"]>("candle");
+  const [authorName, setAuthorName] = useState("");
 
   // Fetch tributes on mount
   useEffect(() => {
+    console.log("hellooooo");
     loadTributes();
   }, []);
 
@@ -37,10 +38,13 @@ export const ClarksonTributes = () => {
     try {
       setLoading(true);
       setError(null);
+      console.log("datasss");
+
       const data = await fetchTributes();
+      console.log("data", data);
       setTributes(data);
     } catch (err) {
-      setError('Failed to load tributes. Please try again later.');
+      setError("Failed to load tributes. Please try again later.");
       console.error(err);
     } finally {
       setLoading(false);
@@ -49,9 +53,9 @@ export const ClarksonTributes = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!authorName.trim()) {
-      alert('Please enter your name');
+      alert("Please enter your name");
       return;
     }
 
@@ -59,18 +63,18 @@ export const ClarksonTributes = () => {
       setSubmitting(true);
       setError(null);
       await addTribute(selectedType, authorName.trim());
-      
+
       // Reload tributes to show the new one
       await loadTributes();
-      
+
       // Reset form
-      setAuthorName('');
-      setSelectedType('candle');
-      
-      alert('Tribute added successfully!');
+      setAuthorName("");
+      setSelectedType("candle");
+
+      alert("Tribute added successfully!");
     } catch (err) {
       console.error(err);
-      setError('Failed to add tribute. Please try again later.');
+      setError("Failed to add tribute. Please try again later.");
     } finally {
       setSubmitting(false);
     }
@@ -79,7 +83,7 @@ export const ClarksonTributes = () => {
   return (
     <div className={styles.tributesContainer}>
       <h2 className={styles.title}>Clarkson Tributes</h2>
-      
+
       {/* Add Tribute Form */}
       <div className={styles.formSection}>
         <h3 className={styles.formTitle}>Leave a Tribute</h3>
@@ -89,12 +93,12 @@ export const ClarksonTributes = () => {
               Tribute Type:
             </label>
             <div className={styles.typeSelector}>
-              {(['candle', 'bow', 'money'] as const).map((type) => (
+              {(["candle", "bow", "money"] as const).map((type) => (
                 <button
                   key={type}
                   type="button"
                   className={`${styles.typeButton} ${
-                    selectedType === type ? styles.selected : ''
+                    selectedType === type ? styles.selected : ""
                   }`}
                   onClick={() => setSelectedType(type)}
                   disabled={submitting}
@@ -105,7 +109,7 @@ export const ClarksonTributes = () => {
               ))}
             </div>
           </div>
-          
+
           <div className={styles.formGroup}>
             <label htmlFor="author-name" className={styles.label}>
               Your Name:
@@ -121,30 +125,26 @@ export const ClarksonTributes = () => {
               maxLength={50}
             />
           </div>
-          
+
           <button
             type="submit"
             className={styles.submitButton}
             disabled={submitting || !authorName.trim()}
           >
-            {submitting ? 'Adding...' : 'Add Tribute'}
+            {submitting ? "Adding..." : "Add Tribute"}
           </button>
         </form>
       </div>
 
       {/* Error Message */}
-      {error && (
-        <div className={styles.error}>
-          {error}
-        </div>
-      )}
+      {error && <div className={styles.error}>{error}</div>}
 
       {/* Tributes Display */}
       <div className={styles.tributesSection}>
         <h3 className={styles.sectionTitle}>
           All Tributes ({tributes.length})
         </h3>
-        
+
         {loading ? (
           <div className={styles.loading}>Loading tributes...</div>
         ) : tributes.length === 0 ? (
@@ -176,4 +176,3 @@ export const ClarksonTributes = () => {
     </div>
   );
 };
-
