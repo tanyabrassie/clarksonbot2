@@ -80,7 +80,7 @@ function App() {
         <Route path="/clarkson-generator" element={<ClarksonGenerator />} />
         <Route path="/tributes" element={<ClarksonTributesPage />} />
       </Routes>
-      {/* <Marquee /> */}
+      <Marquee />
       <BottomBanner />
     </>
   );
