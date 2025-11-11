@@ -208,3 +208,33 @@
     border-color: #9bff53;
   }
 }
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    backdrop-filter: blur(6px);
+  }
+  to {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+.fadeOut {
+  animation: fadeOut 0.6s ease-in forwards !important;
+}
+
+.scaleOut {
+  animation: scaleOut 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) reverse forwards !important;
+}

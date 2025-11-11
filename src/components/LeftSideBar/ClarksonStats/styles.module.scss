@@ -1,7 +1,7 @@
 .container {
   width: 120px;
-  height: 400px;
   display: flex;
+  height: 100%;
   flex-direction: column;
   user-select: none;
   cursor: default;
@@ -74,4 +74,20 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     transform: translate(-50%, -50%) scale(1.2);
   }
+}
+
+.lineContainer:nth-child(1) .node {
+  background-color: #cdff2c;
+}
+
+.lineContainer:nth-child(2) .node {
+  background-color: #38ff1b;
+}
+
+.lineContainer:nth-child(3) .node {
+  background-color: #9bff53;
+}
+
+.lineContainer:nth-child(4) .node {
+  background-color: #03ff89;
 }

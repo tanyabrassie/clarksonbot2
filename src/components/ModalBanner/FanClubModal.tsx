@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./styles.module.scss";
 import clarksonBotUrl from "../../assets/clarkson-bot.gif";
 import { Button } from "../Buttons/Button";
@@ -8,17 +9,26 @@ interface FanClubModalProps {
 }
 
 export const FanClubModal = ({ isOpen = true, onClose }: FanClubModalProps) => {
-  if (!isOpen) return null;
+  const [isClosing, setIsClosing] = useState(false);
 
   const handleClose = () => {
+    setIsClosing(true);
     setTimeout(() => {
       onClose?.(false);
-    }, 1000);
+    }, 600);
   };
 
+  if (!isOpen) return null;
+
   return (
-    <div className={styles.modalBackdrop}>
-      <div className={styles.modalContainer}>
+    <div
+      className={`${styles.modalBackdrop} ${isClosing ? styles.fadeOut : ""}`}
+    >
+      <div
+        className={`${styles.modalContainer} ${
+          isClosing ? styles.scaleOut : ""
+        }`}
+      >
         <img
           className={styles.clarksonBotGif}
           src={clarksonBotUrl}
