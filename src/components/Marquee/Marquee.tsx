@@ -2,16 +2,19 @@ import styles from "./Marquee.module.scss";
 
 export const Marquee = () => {
   return (
-    <h1>hi</h1>
-    // <marquee className={styles.marquee}>
-    //   Build A Bot Now Live! Try It Today! Build A Bot Now Live! Try It Today!
-    //   Build A Bot Now Live! Try It Today! Build A Bot Now Live! Try It Today!
-    //   Build A Bot Now Live! Try It Today! Build A Bot Now Live! Try It Today!
-    //   Build A Bot Now Live! Try It Today! Build A Bot Now Live! Try It Today!
-    //   Build A Bot Now Live! Try It Today! Build A Bot Now Live! Try It Today!
-    //   Build A Bot Now Live! Try It Today! Build A Bot Now Live! Try It Today!
-    //   Build A Bot Now Live! Try It Today! Build A Bot Now Live! Try It Today!
-    //   Build A Bot Now Live! Try It Today! Build A Bot Now Live! Try It Today!
-    // {/* </marquee> */}
+    <div>
+      {/* @ts-expect-error - marquee is deprecated but works for retro aesthetic */}
+      <marquee className={styles.marquee}>
+        Build A Bot Now Live! Try It Today! Build A Bot Now Live! Try It Today!
+        Build A Bot Now Live! Try It Today! Build A Bot Now Live! Try It Today!
+        Build A Bot Now Live! Try It Today! Build A Bot Now Live! Try It Today!
+        Build A Bot Now Live! Try It Today! Build A Bot Now Live! Try It Today!
+        Build A Bot Now Live! Try It Today! Build A Bot Now Live! Try It Today!
+        Build A Bot Now Live! Try It Today! Build A Bot Now Live! Try It Today!
+        Build A Bot Now Live! Try It Today! Build A Bot Now Live! Try It Today!
+        Build A Bot Now Live! Try It Today! Build A Bot Now Live! Try It Today!
+        {/* @ts-expect-error - closing marquee tag */}
+      </marquee>
+    </div>
   );
 };
