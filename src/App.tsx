@@ -13,9 +13,35 @@ import { CenterContent } from "./components/CenterContent/CenterContent";
 import { RightContent } from "./components/RightContent/RightContent";
 import { Marquee } from "./components/Marquee/Marquee";
 import { ClarksonGenerator } from "./pages/ClarksonGenerator";
+import styles from "./pages/ClarksonGenerator.module.scss";
+
+function Home() {
+  const [showReveal, setShowReveal] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowReveal(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <>
+      {showReveal && <div className={styles.circularReveal}></div>}
+      <MainGrid>
+        <LeftSideBar stats={<ClarksonStats />} avatar={<ClarksonAvatar />} />
+        <CenterContent>
+          <BuildABot />
+        </CenterContent>
+        <RightContent></RightContent>
+      </MainGrid>
+    </>
+  );
+}
 
 function App() {
-  const [showSplash, setShowSplash] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -47,23 +73,7 @@ function App() {
       {showSplash && <SplashPage />}
       {showModal && <FanClubModal onClose={() => setShowModal(false)} />}
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <MainGrid>
-                <LeftSideBar
-                  stats={<ClarksonStats />}
-                  avatar={<ClarksonAvatar />}
-                />
-                <CenterContent>
-                  <BuildABot />
-                </CenterContent>
-                <RightContent></RightContent>
-              </MainGrid>
-            </>
-          }
-        />
+        <Route path="/" element={<Home />} />
         <Route path="/clarkson-generator" element={<ClarksonGenerator />} />
       </Routes>
       <Marquee />

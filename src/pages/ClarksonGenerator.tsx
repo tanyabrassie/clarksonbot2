@@ -131,14 +131,27 @@ const MainContainer = ({ setSelectedElement }: MainContainerProps) => {
 
 export const ClarksonGenerator = () => {
   const [selectedElement, setSelectedElement] = useState<string | null>(null);
+  const [showReveal, setShowReveal] = useState(true);
+
+  useEffect(() => {
+    // Remove the reveal animation after it completes (2 seconds)
+    const timer = setTimeout(() => {
+      setShowReveal(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div className={styles.container}>
-      <ToolBar selectedElement={selectedElement} />
-      <MainContainer
-        selectedElement={selectedElement}
-        setSelectedElement={setSelectedElement}
-      />
-    </div>
+    <>
+      {showReveal && <div className={styles.circularReveal}></div>}
+      <div className={styles.container}>
+        <ToolBar selectedElement={selectedElement} />
+        <MainContainer
+          selectedElement={selectedElement}
+          setSelectedElement={setSelectedElement}
+        />
+      </div>
+    </>
   );
 };
