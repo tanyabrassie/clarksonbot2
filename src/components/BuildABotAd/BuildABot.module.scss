@@ -73,6 +73,11 @@
   max-width: 100%;
   height: auto;
   margin-bottom: 20px;
+  transition: filter 0.3s ease-in-out;
+}
+
+.wrapper:hover .image {
+  filter: hue-rotate(30deg);
 }
 
 .button {

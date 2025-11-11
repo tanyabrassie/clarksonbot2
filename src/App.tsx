@@ -16,7 +16,7 @@ import { ClarksonGenerator } from "./pages/ClarksonGenerator";
 import { Signature } from "./components/Signature/Signature";
 
 function App() {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -44,7 +44,6 @@ function App() {
 
   return (
     <>
-      <Signature />
       <Header />
       {showSplash && <SplashPage />}
       {showModal && <FanClubModal onClose={() => setShowModal(false)} />}

@@ -1,5 +1,5 @@
 .container {
-  width: 120px;
+  width: 100%;
   display: flex;
   height: 100%;
   flex-direction: column;
@@ -45,7 +45,7 @@
 }
 
 .line {
-  width: 2px;
+  width: 3px;
   height: 100%;
   background-color: #000;
   position: relative;
@@ -76,18 +76,700 @@
   }
 }
 
-.lineContainer:nth-child(1) .node {
+@keyframes moveNode1 {
+  0% {
+    top: 0%;
+  }
+  42% {
+    top: 100%;
+  }
+  50% {
+    top: 100%;
+  }
+  92% {
+    top: 0%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+@keyframes moveNode2 {
+  0% {
+    top: 100%;
+  }
+  42% {
+    top: 0%;
+  }
+  50% {
+    top: 0%;
+  }
+  92% {
+    top: 100%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes moveNode3 {
+  0% {
+    top: 25%;
+  }
+  44% {
+    top: 75%;
+  }
+  50% {
+    top: 75%;
+  }
+  94% {
+    top: 25%;
+  }
+  100% {
+    top: 25%;
+  }
+}
+
+@keyframes moveNode4 {
+  0% {
+    top: 75%;
+  }
+  44% {
+    top: 25%;
+  }
+  50% {
+    top: 25%;
+  }
+  94% {
+    top: 75%;
+  }
+  100% {
+    top: 75%;
+  }
+}
+
+@keyframes moveNode1Alt {
+  0% {
+    top: 100%;
+  }
+  42% {
+    top: 0%;
+  }
+  50% {
+    top: 0%;
+  }
+  92% {
+    top: 100%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes moveNode2Alt {
+  0% {
+    top: 0%;
+  }
+  42% {
+    top: 100%;
+  }
+  50% {
+    top: 100%;
+  }
+  92% {
+    top: 0%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+@keyframes moveNode3Alt {
+  0% {
+    top: 75%;
+  }
+  44% {
+    top: 25%;
+  }
+  50% {
+    top: 25%;
+  }
+  94% {
+    top: 75%;
+  }
+  100% {
+    top: 75%;
+  }
+}
+
+@keyframes moveNode4Alt {
+  0% {
+    top: 25%;
+  }
+  44% {
+    top: 75%;
+  }
+  50% {
+    top: 75%;
+  }
+  94% {
+    top: 25%;
+  }
+  100% {
+    top: 25%;
+  }
+}
+
+@keyframes moveNode5 {
+  0% {
+    top: 0%;
+  }
+  42% {
+    top: 100%;
+  }
+  50% {
+    top: 100%;
+  }
+  92% {
+    top: 0%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+@keyframes moveNode5Alt {
+  0% {
+    top: 100%;
+  }
+  42% {
+    top: 0%;
+  }
+  50% {
+    top: 0%;
+  }
+  92% {
+    top: 100%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes moveNode6 {
+  0% {
+    top: 25%;
+  }
+  44% {
+    top: 75%;
+  }
+  50% {
+    top: 75%;
+  }
+  94% {
+    top: 25%;
+  }
+  100% {
+    top: 25%;
+  }
+}
+
+@keyframes moveNode6Alt {
+  0% {
+    top: 75%;
+  }
+  44% {
+    top: 25%;
+  }
+  50% {
+    top: 25%;
+  }
+  94% {
+    top: 75%;
+  }
+  100% {
+    top: 75%;
+  }
+}
+
+@keyframes moveNode7 {
+  0% {
+    top: 100%;
+  }
+  42% {
+    top: 0%;
+  }
+  50% {
+    top: 0%;
+  }
+  92% {
+    top: 100%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes moveNode7Alt {
+  0% {
+    top: 0%;
+  }
+  42% {
+    top: 100%;
+  }
+  50% {
+    top: 100%;
+  }
+  92% {
+    top: 0%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+@keyframes moveNode8 {
+  0% {
+    top: 75%;
+  }
+  44% {
+    top: 25%;
+  }
+  50% {
+    top: 25%;
+  }
+  94% {
+    top: 75%;
+  }
+  100% {
+    top: 75%;
+  }
+}
+
+@keyframes moveNode8Alt {
+  0% {
+    top: 25%;
+  }
+  44% {
+    top: 75%;
+  }
+  50% {
+    top: 75%;
+  }
+  94% {
+    top: 25%;
+  }
+  100% {
+    top: 25%;
+  }
+}
+
+@keyframes moveNode9 {
+  0% {
+    top: 0%;
+  }
+  42% {
+    top: 100%;
+  }
+  50% {
+    top: 100%;
+  }
+  92% {
+    top: 0%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+@keyframes moveNode9Alt {
+  0% {
+    top: 100%;
+  }
+  42% {
+    top: 0%;
+  }
+  50% {
+    top: 0%;
+  }
+  92% {
+    top: 100%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes moveNode10 {
+  0% {
+    top: 25%;
+  }
+  44% {
+    top: 75%;
+  }
+  50% {
+    top: 75%;
+  }
+  94% {
+    top: 25%;
+  }
+  100% {
+    top: 25%;
+  }
+}
+
+@keyframes moveNode10Alt {
+  0% {
+    top: 75%;
+  }
+  44% {
+    top: 25%;
+  }
+  50% {
+    top: 25%;
+  }
+  94% {
+    top: 75%;
+  }
+  100% {
+    top: 75%;
+  }
+}
+
+@keyframes moveNode11 {
+  0% {
+    top: 100%;
+  }
+  42% {
+    top: 0%;
+  }
+  50% {
+    top: 0%;
+  }
+  92% {
+    top: 100%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes moveNode11Alt {
+  0% {
+    top: 0%;
+  }
+  42% {
+    top: 100%;
+  }
+  50% {
+    top: 100%;
+  }
+  92% {
+    top: 0%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+/* New diverse animation patterns */
+@keyframes moveSmallRange1 {
+  0% {
+    top: 40%;
+  }
+  40% {
+    top: 60%;
+  }
+  50% {
+    top: 60%;
+  }
+  90% {
+    top: 40%;
+  }
+  100% {
+    top: 40%;
+  }
+}
+
+@keyframes moveSmallRange1Alt {
+  0% {
+    top: 60%;
+  }
+  40% {
+    top: 40%;
+  }
+  50% {
+    top: 40%;
+  }
+  90% {
+    top: 60%;
+  }
+  100% {
+    top: 60%;
+  }
+}
+
+@keyframes moveLowerRange {
+  0% {
+    top: 50%;
+  }
+  45% {
+    top: 100%;
+  }
+  50% {
+    top: 100%;
+  }
+  95% {
+    top: 50%;
+  }
+  100% {
+    top: 50%;
+  }
+}
+
+@keyframes moveUpperRange {
+  0% {
+    top: 50%;
+  }
+  45% {
+    top: 0%;
+  }
+  50% {
+    top: 0%;
+  }
+  95% {
+    top: 50%;
+  }
+  100% {
+    top: 50%;
+  }
+}
+
+@keyframes moveQuarter1 {
+  0% {
+    top: 0%;
+  }
+  40% {
+    top: 33%;
+  }
+  50% {
+    top: 33%;
+  }
+  90% {
+    top: 0%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+@keyframes moveQuarter1Alt {
+  0% {
+    top: 33%;
+  }
+  40% {
+    top: 0%;
+  }
+  50% {
+    top: 0%;
+  }
+  90% {
+    top: 33%;
+  }
+  100% {
+    top: 33%;
+  }
+}
+
+@keyframes moveQuarter2 {
+  0% {
+    top: 33%;
+  }
+  40% {
+    top: 66%;
+  }
+  50% {
+    top: 66%;
+  }
+  90% {
+    top: 33%;
+  }
+  100% {
+    top: 33%;
+  }
+}
+
+@keyframes moveQuarter2Alt {
+  0% {
+    top: 66%;
+  }
+  40% {
+    top: 33%;
+  }
+  50% {
+    top: 33%;
+  }
+  90% {
+    top: 66%;
+  }
+  100% {
+    top: 66%;
+  }
+}
+
+@keyframes moveQuarter3 {
+  0% {
+    top: 66%;
+  }
+  40% {
+    top: 100%;
+  }
+  50% {
+    top: 100%;
+  }
+  90% {
+    top: 66%;
+  }
+  100% {
+    top: 66%;
+  }
+}
+
+@keyframes moveQuarter3Alt {
+  0% {
+    top: 100%;
+  }
+  40% {
+    top: 66%;
+  }
+  50% {
+    top: 66%;
+  }
+  90% {
+    top: 100%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+/* Line 1 - Bright lime yellow-green */
+.lineContainer:nth-child(1) .node1 {
   background-color: #cdff2c;
+  animation: moveSmallRange1 18s linear infinite alternate;
 }
 
-.lineContainer:nth-child(2) .node {
+.lineContainer:nth-child(1) .node2 {
+  background-color: #cdff2c;
+  animation: moveSmallRange1Alt 18s linear infinite alternate;
+}
+
+/* Line 2 - Bright green */
+.lineContainer:nth-child(2) .node1 {
   background-color: #38ff1b;
+  animation: moveQuarter1 22.5s linear infinite alternate;
 }
 
-.lineContainer:nth-child(3) .node {
+.lineContainer:nth-child(2) .node2 {
+  background-color: #38ff1b;
+  animation: moveQuarter1Alt 22.5s linear infinite alternate;
+}
+
+/* Line 3 - Light green */
+.lineContainer:nth-child(3) .node1 {
   background-color: #9bff53;
+  animation: moveQuarter2 27s linear infinite alternate;
 }
 
-.lineContainer:nth-child(4) .node {
+.lineContainer:nth-child(3) .node2 {
+  background-color: #9bff53;
+  animation: moveQuarter2Alt 27s linear infinite alternate;
+}
+
+/* Line 4 - Cyan green */
+.lineContainer:nth-child(4) .node1 {
   background-color: #03ff89;
+  animation: moveQuarter3 20s linear infinite alternate;
+}
+
+.lineContainer:nth-child(4) .node2 {
+  background-color: #03ff89;
+  animation: moveQuarter3Alt 20s linear infinite alternate;
+}
+
+/* Line 5 - Bright lime yellow-green (alt) */
+.lineContainer:nth-child(5) .node1 {
+  background-color: #cdff2c;
+  animation: moveUpperRange 18s linear infinite alternate;
+}
+
+.lineContainer:nth-child(5) .node2 {
+  background-color: #cdff2c;
+  animation: moveLowerRange 18s linear infinite alternate;
+}
+
+/* Line 6 - Light green (alt) */
+.lineContainer:nth-child(6) .node1 {
+  background-color: #9bff53;
+  animation: moveNode3 27s linear infinite alternate;
+}
+
+.lineContainer:nth-child(6) .node2 {
+  background-color: #9bff53;
+  animation: moveSmallRange1 27s linear infinite alternate;
+}
+
+/* Line 7 - Bright green (alt) */
+.lineContainer:nth-child(7) .node1 {
+  background-color: #38ff1b;
+  animation: moveQuarter2 22.5s linear infinite alternate;
+}
+
+.lineContainer:nth-child(7) .node2 {
+  background-color: #38ff1b;
+  animation: moveQuarter3 22.5s linear infinite alternate;
+}
+
+/* Line 8 - Cyan green (alt) */
+.lineContainer:nth-child(8) .node1 {
+  background-color: #03ff89;
+  animation: moveLowerRange 20s linear infinite alternate;
+}
+
+.lineContainer:nth-child(8) .node2 {
+  background-color: #03ff89;
+  animation: moveQuarter1 20s linear infinite alternate;
+}
+
+/* Line 9 - Bright lime yellow-green (alt 2) */
+.lineContainer:nth-child(9) .node1 {
+  background-color: #cdff2c;
+  animation: moveSmallRange1Alt 18s linear infinite alternate;
+}
+
+.lineContainer:nth-child(9) .node2 {
+  background-color: #cdff2c;
+  animation: moveUpperRange 18s linear infinite alternate;
+}
+
+/* Line 10 - Light green (alt 2) */
+.lineContainer:nth-child(10) .node1 {
+  background-color: #9bff53;
+  animation: moveQuarter1Alt 27s linear infinite alternate;
+}
+
+.lineContainer:nth-child(10) .node2 {
+  background-color: #9bff53;
+  animation: moveQuarter2Alt 27s linear infinite alternate;
+}
+
+/* Line 11 - Bright green (alt 2) */
+.lineContainer:nth-child(11) .node1 {
+  background-color: #38ff1b;
+  animation: moveQuarter3Alt 22.5s linear infinite alternate;
+}
+
+.lineContainer:nth-child(11) .node2 {
+  background-color: #38ff1b;
+  animation: moveLowerRange 22.5s linear infinite alternate;
 }

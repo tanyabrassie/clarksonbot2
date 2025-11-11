@@ -11,8 +11,26 @@ export const ClarksonStats = () => {
   const [sliders, setSliders] = useState<SliderState[]>([
     { id: 0, position: 40 },
     { id: 1, position: 70 },
-    { id: 2, position: 25 },
-    { id: 3, position: 85 },
+    { id: 2, position: 70 },
+    { id: 3, position: 25 },
+    { id: 4, position: 25 },
+    { id: 5, position: 85 },
+    { id: 6, position: 85 },
+    { id: 7, position: 45 },
+    { id: 8, position: 60 },
+    { id: 9, position: 35 },
+    { id: 10, position: 50 },
+    { id: 11, position: 55 },
+    { id: 12, position: 30 },
+    { id: 13, position: 70 },
+    { id: 14, position: 65 },
+    { id: 15, position: 40 },
+    { id: 16, position: 75 },
+    { id: 17, position: 25 },
+    { id: 18, position: 55 },
+    { id: 19, position: 45 },
+    { id: 20, position: 80 },
+    { id: 21, position: 35 },
   ]);
 
   const [draggingId, setDraggingId] = useState<number | null>(null);
@@ -56,14 +74,22 @@ export const ClarksonStats = () => {
     >
       <div className={styles.header}>CLARKSON STATS</div>
       <div className={styles.lines}>
-        {sliders.map((slider) => (
-          <div key={slider.id} className={styles.lineContainer}>
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((lineIndex) => (
+          <div key={lineIndex} className={styles.lineContainer}>
             <div className={styles.line} />
-            <div
-              className={styles.node}
-              style={{ top: `${slider.position}%` }}
-              onMouseDown={() => handleMouseDown(slider.id)}
-            />
+            {[0, 1].map((nodeIndex) => {
+              const slider = sliders[lineIndex * 2 + nodeIndex];
+              return (
+                <div
+                  key={slider.id}
+                  className={`${styles.node} ${
+                    nodeIndex === 0 ? styles.node1 : styles.node2
+                  }`}
+                  style={{ top: `${slider.position}%` }}
+                  onMouseDown={() => handleMouseDown(slider.id)}
+                />
+              );
+            })}
           </div>
         ))}
       </div>
