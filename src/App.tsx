@@ -41,7 +41,7 @@ function Home() {
 }
 
 function App() {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {

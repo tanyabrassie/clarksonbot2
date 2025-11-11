@@ -3,7 +3,13 @@
   display: flex;
   display: grid;
   grid-template-columns: 20% 80%;
-  background-color: #f6fffb;
+  background-color: #f6fcff;
+  background-image: linear-gradient(
+      rgba(32, 220, 67, 0.68) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgb(229 79 255 / 46%) 1px, transparent 1px);
+  background-size: 20px 20px;
   max-width: 1600px;
   margin: Auto;
   height: calc(100vh - 210px);
@@ -14,7 +20,7 @@
   width: 80%;
   container-type: inline-size;
   margin: 25px auto;
-  background-color: black;
+  background-color: #000000b5;
   height: 100%;
   border-radius: 22px;
   color: white;
@@ -23,6 +29,12 @@
   text-transform: uppercase;
   padding: 20px;
   box-sizing: border-box;
+  backdrop-filter: blur(1px);
+  transition: all 0.25s ease-in-out;
+
+  &:hover {
+    border-radius: 0;
+  }
 }
 
 .selectedElement {
@@ -93,6 +105,28 @@
   border-radius: 50%;
   background-color: transparent;
   border: 4px solid #d946ef;
+  position: relative;
+}
+
+.noStroke {
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    height: 2px;
+    background-color: #ff0000;
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
 }
 
 .circularReveal {

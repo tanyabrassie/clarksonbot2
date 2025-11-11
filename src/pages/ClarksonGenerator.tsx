@@ -4,13 +4,22 @@ import { useEffect, useRef, useState } from "react";
 
 interface ToolBarProps {
   selectedElement: string | null;
+  fillColor: string;
+  strokeColor: string;
 }
 
-const ToolBar = ({ selectedElement }: ToolBarProps) => {
+const ToolBar = ({ selectedElement, fillColor, strokeColor }: ToolBarProps) => {
   // Extract the name after "clarkson-" prefix
   const elementName = selectedElement
     ? selectedElement.replace("clarkson-", "")
     : "None";
+
+  // Check if stroke is none/transparent
+  const hasNoStroke =
+    !strokeColor ||
+    strokeColor === "none" ||
+    strokeColor === "transparent" ||
+    strokeColor === "rgba(0, 0, 0, 0)";
 
   return (
     <div className={styles.toolBar}>
@@ -20,11 +29,19 @@ const ToolBar = ({ selectedElement }: ToolBarProps) => {
       <div className={styles.colorOptions}>
         <div className={styles.colorOption}>
           <div className={styles.label}>FILL</div>
-          <div className={styles.fillCircle}></div>
+          <div
+            className={styles.fillCircle}
+            style={{ backgroundColor: fillColor }}
+          ></div>
         </div>
         <div className={styles.colorOption}>
           <div className={styles.label}>STROKE</div>
-          <div className={styles.strokeCircle}></div>
+          <div
+            className={`${styles.strokeCircle} ${
+              hasNoStroke ? styles.noStroke : ""
+            }`}
+            style={{ borderColor: hasNoStroke ? "#ccc" : strokeColor }}
+          ></div>
         </div>
       </div>
     </div>
@@ -34,9 +51,15 @@ const ToolBar = ({ selectedElement }: ToolBarProps) => {
 interface MainContainerProps {
   selectedElement: string | null;
   setSelectedElement: (element: string | null) => void;
+  setFillColor: (color: string) => void;
+  setStrokeColor: (color: string) => void;
 }
 
-const MainContainer = ({ setSelectedElement }: MainContainerProps) => {
+const MainContainer = ({
+  setSelectedElement,
+  setFillColor,
+  setStrokeColor,
+}: MainContainerProps) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const previousSelectedRef = useRef<Element | null>(null);
 
@@ -67,6 +90,61 @@ const MainContainer = ({ setSelectedElement }: MainContainerProps) => {
               "drop-shadow(0 0 6px rgba(20, 223, 64, 0.942))";
             previousSelectedRef.current = element;
 
+            // Get the fill and stroke colors from the clicked element
+            let fill = "transparent";
+            let stroke = "transparent";
+
+            const computedStyle = window.getComputedStyle(element);
+            fill = computedStyle.fill || "transparent";
+            stroke = computedStyle.stroke || "transparent";
+
+            console.log("Element fill:", fill, "stroke:", stroke);
+
+            // If fill or stroke is none/transparent/black (default), search children
+            const isTransparent = (color: string) => {
+              return (
+                !color ||
+                color === "none" ||
+                color === "transparent" ||
+                color === "rgba(0, 0, 0, 0)" ||
+                color === "rgb(0, 0, 0)"
+              );
+            };
+
+            if (isTransparent(fill) || isTransparent(stroke)) {
+              const children = element.querySelectorAll("*");
+              console.log("Searching", children.length, "children for colors");
+
+              for (const child of children) {
+                const childStyle = window.getComputedStyle(child);
+
+                if (isTransparent(fill)) {
+                  const childFill = childStyle.fill;
+                  console.log("Child fill:", childFill);
+                  if (!isTransparent(childFill)) {
+                    fill = childFill;
+                  }
+                }
+
+                if (isTransparent(stroke)) {
+                  const childStroke = childStyle.stroke;
+                  console.log("Child stroke:", childStroke);
+                  if (!isTransparent(childStroke)) {
+                    stroke = childStroke;
+                  }
+                }
+
+                // Stop if we found both
+                if (!isTransparent(fill) && !isTransparent(stroke)) {
+                  break;
+                }
+              }
+
+              console.log("Final fill:", fill, "stroke:", stroke);
+            }
+
+            setFillColor(fill);
+            setStrokeColor(stroke);
             setSelectedElement(elementId);
           };
 
@@ -118,19 +196,14 @@ const MainContainer = ({ setSelectedElement }: MainContainerProps) => {
   return (
     <div className={styles.mainContainer}>
       <ClarksonBotSvg ref={svgRef} />
-      {/* {selectedElement && (
-        <div
-          style={{ marginTop: "20px", padding: "10px", background: "#f0f0f0" }}
-        >
-          Selected: <strong>{selectedElement}</strong>
-        </div>
-      )} */}
     </div>
   );
 };
 
 export const ClarksonGenerator = () => {
   const [selectedElement, setSelectedElement] = useState<string | null>(null);
+  const [fillColor, setFillColor] = useState<string>("#d946ef");
+  const [strokeColor, setStrokeColor] = useState<string>("#d946ef");
   const [showReveal, setShowReveal] = useState(true);
 
   useEffect(() => {
@@ -146,10 +219,16 @@ export const ClarksonGenerator = () => {
     <>
       {showReveal && <div className={styles.circularReveal}></div>}
       <div className={styles.container}>
-        <ToolBar selectedElement={selectedElement} />
+        <ToolBar
+          selectedElement={selectedElement}
+          fillColor={fillColor}
+          strokeColor={strokeColor}
+        />
         <MainContainer
           selectedElement={selectedElement}
           setSelectedElement={setSelectedElement}
+          setFillColor={setFillColor}
+          setStrokeColor={setStrokeColor}
         />
       </div>
     </>
