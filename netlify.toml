@@ -28,9 +28,6 @@
   from = "/*"
   to = "/index.html"
   status = 200
-  # Don't apply this redirect to the functions
-  conditions = {Role = []}
-  force = false
 
 # Headers for security and CORS if needed
 [[headers]]
