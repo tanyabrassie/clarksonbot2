@@ -11,10 +11,89 @@
 }
 
 .toolBar {
-  border: 1px solid red;
-  width: 100%;
+  width: 80%;
+  container-type: inline-size;
+  margin: 25px auto;
+  background-color: black;
+  height: 100%;
+  border-radius: 22px;
+  color: white;
+  font-family: monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.selectedElement {
+  font-size: 18px;
+  text-align: center;
+
+  span {
+    display: block;
+    container-type: inline-size;
+    text-align: center;
+    padding: 10px 0;
+    font-family: "Gabarito", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    font-size: 40px;
+    color: rgb(48, 231, 215);
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: #49ff3c;
+    text-underline-offset: 8px;
+    position: relative;
+
+    &::after {
+      content: "";
+      width: 100%;
+      display: block;
+      text-decoration: underline;
+      text-decoration-style: wavy;
+      text-decoration-color: #49ff3c;
+      text-decoration-thickness: 2px;
+      margin-top: 8px;
+      font-size: 20px;
+      text-align: center;
+      color: transparent;
+    }
+  }
+}
+
+.colorOptions {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.colorOption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.fillCircle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #d946ef;
+}
+
+.strokeCircle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 4px solid #d946ef;
 }
 
 .mainContainer {
-  border: 1px solid blue;
 }
