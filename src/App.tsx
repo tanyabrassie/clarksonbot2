@@ -13,6 +13,8 @@ import { CenterContent } from "./components/CenterContent/CenterContent";
 import { RightContent } from "./components/RightContent/RightContent";
 import { Marquee } from "./components/Marquee/Marquee";
 import { ClarksonGenerator } from "./pages/ClarksonGenerator";
+import { ClarksonTributes as ClarksonTributesPage } from "./pages/ClarksonTributes";
+import { ClarksonTributes as ClarksonTributesComponent } from "./components/ClarksonTributes/ClarksonTributes";
 import styles from "./pages/ClarksonGenerator.module.scss";
 
 function Home() {
@@ -33,6 +35,7 @@ function Home() {
         <LeftSideBar stats={<ClarksonStats />} avatar={<ClarksonAvatar />} />
         <CenterContent>
           <BuildABot />
+          <ClarksonTributesComponent />
         </CenterContent>
         <RightContent></RightContent>
       </MainGrid>
@@ -75,6 +78,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/clarkson-generator" element={<ClarksonGenerator />} />
+        <Route path="/tributes" element={<ClarksonTributesPage />} />
       </Routes>
       <Marquee />
       <BottomBanner />

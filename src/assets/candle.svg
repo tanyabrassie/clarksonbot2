@@ -1,0 +1,20 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Flame -->
+  <ellipse cx="32" cy="15" rx="6" ry="9" fill="#FFD700"/>
+  <ellipse cx="32" cy="15" rx="4" ry="6" fill="#FFA500"/>
+  <ellipse cx="32" cy="15" rx="2" ry="3" fill="#FF4500"/>
+  
+  <!-- Wick -->
+  <rect x="31" y="20" width="2" height="6" fill="#333333"/>
+  
+  <!-- Candle body -->
+  <rect x="26" y="26" width="12" height="28" rx="1" fill="#F5F5DC"/>
+  
+  <!-- Wax drips -->
+  <path d="M 28 30 Q 26 32 26 34" stroke="#E8E8C8" stroke-width="1.5" fill="none"/>
+  <path d="M 36 35 Q 38 37 38 39" stroke="#E8E8C8" stroke-width="1.5" fill="none"/>
+  
+  <!-- Base -->
+  <ellipse cx="32" cy="54" rx="8" ry="2" fill="#8B7355"/>
+</svg>
+

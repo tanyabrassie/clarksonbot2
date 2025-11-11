@@ -1,0 +1,42 @@
+.tributesPage {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+}
+
+// Circular reveal animation
+.circularReveal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  z-index: 9998;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 10vmin;
+    height: 10vmin;
+    border-radius: 50%;
+    box-shadow: 0 0 0 200vmax black;
+    animation: growCircle 2s ease-in-out forwards;
+  }
+}
+
+@keyframes growCircle {
+  0% {
+    width: 10vmin;
+    height: 10vmin;
+  }
+  100% {
+    width: 300vmax;
+    height: 300vmax;
+  }
+}
+

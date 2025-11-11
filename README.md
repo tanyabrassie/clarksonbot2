@@ -1,15 +1,130 @@
-# React + TypeScript + Vite
+# Clarkson Bot 2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript + Vite application for leaving tributes to Clarkson Bot.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- View and add tributes (candles, bows, money)
+- Secure serverless architecture using Netlify Functions
+- Data stored in GitHub Gist
+- Modern, responsive UI
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React 19 + TypeScript + Vite + SCSS
+- **Backend**: Netlify Serverless Functions
+- **Database**: GitHub Gist (public JSON storage)
+- **Deployment**: Netlify
+
+## Local Development
+
+### Prerequisites
+
+- Node.js 18+ (recommended: v22.11.0 or higher)
+- npm 10+
+
+### Setup
+
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+3. **View the app**
+   Open `http://localhost:5173` in your browser
+
+### Local Development Notes
+
+- **Reading tributes**: Works out of the box (no authentication needed)
+- **Writing tributes**: Requires deploying to Netlify or running `netlify dev` locally with environment variables configured
+
+## Deployment to Netlify
+
+### Step 1: Connect Your Repository
+
+1. Push your code to GitHub/GitLab/Bitbucket
+2. Log in to [Netlify](https://app.netlify.com)
+3. Click "Add new site" → "Import an existing project"
+4. Connect your repository
+5. Netlify will auto-detect the settings from `netlify.toml`
+
+### Step 2: Configure Environment Variables
+
+**IMPORTANT**: You must set up a GitHub Personal Access Token for write functionality.
+
+1. **Create a GitHub Personal Access Token**:
+   - Go to https://github.com/settings/tokens
+   - Click "Generate new token (classic)"
+   - Give it a name like "Netlify Clarkson Bot"
+   - Select scopes: **Only check "gist"**
+   - Click "Generate token"
+   - **Copy the token** (you won't see it again!)
+
+2. **Add to Netlify**:
+   - In Netlify dashboard, go to: **Site Settings → Environment Variables**
+   - Click "Add a variable"
+   - Key: `GITHUB_TOKEN`
+   - Value: `ghp_your_token_here` (paste your token)
+   - Click "Create variable"
+
+### Step 3: Deploy
+
+- Netlify will automatically deploy on every push to your main branch
+- The first deploy happens immediately after connecting
+
+## Architecture
+
+### Security Model
+
+This app uses a **serverless function** to keep the GitHub token secure:
+
+```
+Browser (Client)                  Netlify Function (Server)           GitHub API
+     │                                    │                                │
+     ├─ Read tributes ───────────────────┼───────────────────────────────→│
+     │  (public, no auth)                 │                                │
+     │                                    │                                │
+     ├─ Write tribute ───→ POST /api ────┤                                │
+     │                    + {type,author} │                                │
+     │                                    ├─ Validates input               │
+     │                                    ├─ Uses GITHUB_TOKEN ────────────→│
+     │                                    │                      (secure!) │
+     │  ←─ Success ─────────────────────────────────────────────────────────┤
+```
+
+**Key Security Features**:
+- ✅ GitHub token stored server-side only (Netlify environment variables)
+- ✅ Token never exposed to browser/client
+- ✅ Input validation on serverless function
+- ✅ Public reads don't require authentication
+
+### File Structure
+
+```
+clarksonbot2/
+├── src/
+│   ├── components/        # React components
+│   ├── services/
+│   │   └── gistService.ts # Client-side API calls
+│   └── types/             # TypeScript types
+├── netlify/
+│   └── functions/
+│       └── add-tribute.ts # Serverless function (handles writes)
+├── netlify.toml           # Netlify configuration
+└── package.json
+```
+
+## Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint
 
 ## Expanding the ESLint configuration
 

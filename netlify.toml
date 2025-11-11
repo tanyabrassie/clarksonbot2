@@ -1,0 +1,44 @@
+# Netlify Configuration
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Directory with the serverless functions
+  functions = "netlify/functions"
+  
+  # Build command for Vite
+  command = "npm run build"
+  
+  # Directory where build output is placed
+  publish = "dist"
+
+[build.environment]
+  # Node version
+  NODE_VERSION = "18"
+
+# Redirect rules for SPA (Single Page Application)
+# This ensures all routes are handled by your React app
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  # Don't apply this redirect to the functions
+  conditions = {Role = []}
+  force = false
+
+# Headers for security and CORS if needed
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Optional: Configure function settings
+[functions]
+  # Directory for your functions (same as build.functions)
+  directory = "netlify/functions"
+  
+  # Node bundler for TypeScript support
+  node_bundler = "esbuild"
+

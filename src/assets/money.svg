@@ -1,0 +1,21 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bill background -->
+  <rect x="8" y="20" width="48" height="24" rx="2" fill="#85BB65" stroke="#5A8045" stroke-width="2"/>
+  
+  <!-- Corner circles -->
+  <circle cx="13" cy="25" r="2" fill="#5A8045" opacity="0.5"/>
+  <circle cx="51" cy="25" r="2" fill="#5A8045" opacity="0.5"/>
+  <circle cx="13" cy="39" r="2" fill="#5A8045" opacity="0.5"/>
+  <circle cx="51" cy="39" r="2" fill="#5A8045" opacity="0.5"/>
+  
+  <!-- Dollar sign -->
+  <text x="32" y="37" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2D5016" text-anchor="middle">$</text>
+  
+  <!-- Decorative lines -->
+  <line x1="12" y1="28" x2="12" y2="36" stroke="#5A8045" stroke-width="1" opacity="0.5"/>
+  <line x1="52" y1="28" x2="52" y2="36" stroke="#5A8045" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Border detail -->
+  <rect x="10" y="22" width="44" height="20" rx="1" fill="none" stroke="#5A8045" stroke-width="0.5" opacity="0.3"/>
+</svg>
+

@@ -1,0 +1,22 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left bow loop -->
+  <path d="M 20 32 Q 10 20 15 15 Q 20 10 25 20 Q 28 28 20 32 Z" fill="#FF69B4" stroke="#FF1493" stroke-width="1.5"/>
+  
+  <!-- Right bow loop -->
+  <path d="M 44 32 Q 54 20 49 15 Q 44 10 39 20 Q 36 28 44 32 Z" fill="#FF69B4" stroke="#FF1493" stroke-width="1.5"/>
+  
+  <!-- Center knot -->
+  <ellipse cx="32" cy="32" rx="5" ry="6" fill="#FF1493"/>
+  <ellipse cx="32" cy="32" rx="3" ry="4" fill="#FF69B4"/>
+  
+  <!-- Left ribbon -->
+  <path d="M 27 35 L 20 50 L 18 48 L 25 34 Z" fill="#FF69B4" stroke="#FF1493" stroke-width="1"/>
+  
+  <!-- Right ribbon -->
+  <path d="M 37 35 L 44 50 L 46 48 L 39 34 Z" fill="#FF69B4" stroke="#FF1493" stroke-width="1"/>
+  
+  <!-- Ribbon ends -->
+  <path d="M 18 48 L 15 52 L 20 50 Z" fill="#FF1493"/>
+  <path d="M 46 48 L 49 52 L 44 50 Z" fill="#FF1493"/>
+</svg>
+
