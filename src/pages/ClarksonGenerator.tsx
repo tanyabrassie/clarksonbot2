@@ -1,6 +1,7 @@
 import styles from "./ClarksonGenerator.module.scss";
 import ClarksonBotSvg from "../assets/clarksonbot.svg?react";
 import { useEffect, useRef, useState } from "react";
+import { Button } from "../components/Buttons/Button";
 
 interface ToolBarProps {
   selectedElement: string | null;
@@ -106,6 +107,7 @@ const ToolBar = ({
           />
         </div>
       </div>
+      <Button className={styles.exportButton}>EXPORT BOT</Button>
     </div>
   );
 };
@@ -253,7 +255,7 @@ const MainContainer = ({
 
   return (
     <div className={styles.mainContainer}>
-      <ClarksonBotSvg ref={svgRef} />
+      <ClarksonBotSvg ref={svgRef} style={{ opacity: 0.8 }} />
     </div>
   );
 };

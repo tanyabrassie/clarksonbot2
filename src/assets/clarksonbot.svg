@@ -37,10 +37,6 @@
         fill: red;
       }
 
-      .st8, .st2 {
-        opacity: .8;
-      }
-
       .st9 {
         fill: blue;
       }
