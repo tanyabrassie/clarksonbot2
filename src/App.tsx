@@ -13,7 +13,6 @@ import { CenterContent } from "./components/CenterContent/CenterContent";
 import { RightContent } from "./components/RightContent/RightContent";
 import { Marquee } from "./components/Marquee/Marquee";
 import { ClarksonGenerator } from "./pages/ClarksonGenerator";
-import { ClarksonTributes as ClarksonTributesComponent } from "./components/ClarksonTributes/ClarksonTributes";
 import styles from "./pages/ClarksonGenerator.module.scss";
 
 function Home() {

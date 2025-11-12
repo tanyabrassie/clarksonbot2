@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./style.module.scss";
 import { HeaderContent } from "./HeaderContent";
 import { BottomBanner } from "../BottomBanner/BottomBanner";
@@ -8,6 +8,20 @@ import retroCoinUrl from "../../assets/retro_coin.png";
 export const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+
+  // Prevent body scroll when drawer is open
+  useEffect(() => {
+    if (drawerOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [drawerOpen]);
 
   const handleCoinClick = () => {
     if (drawerOpen) {
