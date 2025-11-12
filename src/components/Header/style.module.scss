@@ -158,6 +158,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:hover .retroCoin {
+    transform: scale(1.5);
+  }
 }
 
 .retroCoin {
@@ -167,6 +171,7 @@
   pointer-events: none;
   z-index: 2;
   animation: coinFlicker 3s ease-in-out infinite;
+  transition: transform 0.3s ease;
 }
 
 .coinSparkle {
@@ -279,5 +284,100 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+// Drawer Styles
+.drawerOverlay {
+  position: fixed;
+  top: 172px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100; // Lower than header so coin stays clickable
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  animation: fadeIn 0.3s ease-in-out;
+
+  &.drawerClosing {
+    animation: fadeOut 0.4s ease-in-out forwards;
+  }
+}
+
+.drawer {
+  position: relative;
+  width: 500px;
+  max-width: 90vw;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  box-shadow: -4px 0 20px rgb(19 255 210 / 68%);
+  overflow-y: auto;
+  animation: slideInFromRight 0.4s ease-out;
+
+  &.drawerClosing {
+    animation: slideOutToRight 0.4s ease-in forwards;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(48, 231, 215, 0.5);
+  color: rgb(48, 231, 215);
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+
+  &:hover {
+    background: rgba(48, 231, 215, 0.2);
+    border-color: #49ff3c;
+    color: #49ff3c;
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
   }
 }

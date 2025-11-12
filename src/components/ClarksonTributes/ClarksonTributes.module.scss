@@ -2,7 +2,7 @@
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  background-color: pink;
+  background-color: black;
 }
 
 .title {
@@ -14,6 +14,7 @@
   margin-bottom: 30px;
   text-decoration: underline;
   text-decoration-style: wavy;
+  text-underline-offset: 8px;
   text-decoration-color: #49ff3c;
 }
 
@@ -21,7 +22,7 @@
 .formSection {
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(48, 231, 215, 0.3);
+  border: 0008ff;
   border-radius: 10px;
   padding: 25px;
   margin-bottom: 40px;
@@ -67,10 +68,10 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  padding: 15px 20px;
+  padding: 25px;
   background: rgba(0, 0, 0, 0.3);
-  border: 2px solid rgba(73, 255, 60, 0.3);
-  border-radius: 8px;
+  border: 3px solid rgba(73, 255, 60, 0.3);
+  border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
   min-width: 100px;
@@ -127,8 +128,7 @@
 .input {
   padding: 12px 15px;
   background: rgba(0, 0, 0, 0.5);
-  border: 2px solid rgba(48, 231, 215, 0.3);
-  border-radius: 6px;
+  border: 3px solid rgba(48, 231, 215, 0.3);
   color: rgb(48, 231, 215);
   font-family: "Gabarito", sans-serif;
   font-size: 16px;
@@ -150,29 +150,11 @@
   }
 }
 
-.submitButton {
-  padding: 12px 30px;
-  background: linear-gradient(135deg, #49ff3c, rgb(48, 231, 215));
-  border: none;
-  border-radius: 6px;
-  color: #000;
-  font-family: "Gabarito", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  align-self: center;
-
-  &:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(73, 255, 60, 0.4);
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-  }
+.submitButtonWrapper {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 // Error Message
@@ -239,6 +221,30 @@
   width: 64px;
   height: 64px;
   filter: drop-shadow(0 2px 8px rgba(73, 255, 60, 0.3));
+}
+
+.subTitle {
+  font-family: monospace;
+  font-size: 20px;
+  color: #30e783;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.tributesContainer ul {
+  font-family: monospace;
+  text-transform: uppercase;
+
+  color: rgb(48, 231, 215);
+  margin: 0 auto 30px;
+  max-width: 600px;
+  padding-left: 40px;
+  list-style: circle;
+
+  li {
+    color: rgb(48, 231, 215);
+    margin-bottom: 8px;
+  }
 }
 
 .tributeInfo {

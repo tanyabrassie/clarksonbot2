@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import styles from "./ClarksonTributes.module.scss";
 import type { Tribute } from "../../types/tribute";
 import { fetchTributes, addTribute } from "../../services/gistService";
+import { Button } from "../Buttons/Button";
 import candleIcon from "../../assets/candle.svg";
-import bowIcon from "../../assets/bow.svg";
-import moneyIcon from "../../assets/money.svg";
+import moneyIcon from "../../assets/moneybag.gif";
+import bowingIcon from "../../assets/bowing.gif";
 
 const tributeIcons: Record<Tribute["type"], string> = {
   candle: candleIcon,
-  bow: bowIcon,
+  bow: bowingIcon,
   money: moneyIcon,
 };
 
@@ -83,6 +84,13 @@ export const ClarksonTributes = () => {
   return (
     <div className={styles.tributesContainer}>
       <h2 className={styles.title}>Clarkson Tributes</h2>
+      <h3 className={styles.subTitle}>Tributes have been proven to make:</h3>
+      <ul>
+        <li>On call shifts more peaceful</li>
+        <li>Code to compile faster</li>
+        <li>Marshmallow tests pass more frequently</li>
+        <li>...plus many many more advantages!</li>
+      </ul>
 
       {/* Add Tribute Form */}
       <div className={styles.formSection}>
@@ -90,7 +98,7 @@ export const ClarksonTributes = () => {
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
             <label htmlFor="tribute-type" className={styles.label}>
-              Tribute Type:
+              Your Tribute Type:
             </label>
             <div className={styles.typeSelector}>
               {(["candle", "bow", "money"] as const).map((type) => (
@@ -104,7 +112,6 @@ export const ClarksonTributes = () => {
                   disabled={submitting}
                 >
                   <img src={tributeIcons[type]} alt={tributeLabels[type]} />
-                  <span>{tributeLabels[type]}</span>
                 </button>
               ))}
             </div>
@@ -126,13 +133,11 @@ export const ClarksonTributes = () => {
             />
           </div>
 
-          <button
-            type="submit"
-            className={styles.submitButton}
-            disabled={submitting || !authorName.trim()}
-          >
-            {submitting ? "Adding..." : "Add Tribute"}
-          </button>
+          <div className={styles.submitButtonWrapper}>
+            <Button type="submit" variant="primary" disabled={submitting}>
+              {submitting ? "Giving..." : "Give Tribute"}
+            </Button>
+          </div>
         </form>
       </div>
 
