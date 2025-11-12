@@ -144,14 +144,6 @@ export const ClarksonTributes = () => {
 
       {/* Error Message */}
       {error && <div className={styles.error}>{error}</div>}
-
-      {/* Tributes Display */}
-      <TributesDisplay
-        tributes={tributes}
-        loading={loading}
-        tributeIcons={tributeIcons}
-        tributeLabels={tributeLabels}
-      />
     </div>
   );
 };

@@ -1,5 +1,7 @@
 import styles from "./TributesDisplay.module.scss";
 import type { Tribute } from "../../types/tribute";
+import clarksonBotGif from "../../assets/clarkson-bot.gif";
+import coinIcon from "../../assets/retro_coin.png";
 
 interface TributesDisplayProps {
   tributes: Tribute[];
@@ -12,12 +14,32 @@ export const TributesDisplay = ({
   tributes,
   loading,
   tributeIcons,
-  tributeLabels,
 }: TributesDisplayProps) => {
   return (
     <div className={styles.tributesSection}>
-      <h3 className={styles.sectionTitle}>
-        All Tributes ({tributes.length})
+      <div className={styles.botsHeader}>
+        <img src={clarksonBotGif} alt="ClarksonBot" className={styles.botGif} />
+        <div className={styles.coinIconContainer}>
+          <img src={coinIcon} alt="Coin" className={styles.coinIcon} />
+          <span className={styles.coinSparkle} data-sparkle="1">
+            ✨
+          </span>
+          <span className={styles.coinSparkle} data-sparkle="2">
+            ✨
+          </span>
+          <span className={styles.coinSparkle} data-sparkle="3">
+            ✨
+          </span>
+          <span className={styles.coinSparkle} data-sparkle="4">
+            ✨
+          </span>
+        </div>
+        <img src={clarksonBotGif} alt="ClarksonBot" className={styles.botGif} />
+      </div>
+
+      <h2 className={styles.sectionTitle}>ClarksonBot Tributes</h2>
+      <h3 className={styles.tributeTally}>
+        Tributes Received Today: <span>{tributes.length}</span>
       </h3>
 
       {loading ? (
@@ -27,22 +49,17 @@ export const TributesDisplay = ({
           No tributes yet. Be the first to leave one!
         </div>
       ) : (
-        <div className={styles.tributesGrid}>
-          {tributes.map((tribute, index) => (
-            <div key={index} className={styles.tributeCard}>
+        <div className={styles.tributesList}>
+          {[...tributes].reverse().map((tribute, index) => (
+            <div key={index} className={styles.tributeItem}>
               <img
                 src={tributeIcons[tribute.type]}
-                alt={tributeLabels[tribute.type]}
+                alt={tribute.type}
                 className={styles.tributeIcon}
               />
-              <div className={styles.tributeInfo}>
-                <div className={styles.tributeType}>
-                  {tributeLabels[tribute.type]}
-                </div>
-                <div className={styles.tributeAuthor}>
-                  from {tribute.author}
-                </div>
-              </div>
+              <span className={styles.tributeText}>
+                FROM {tribute.author.toUpperCase()}
+              </span>
             </div>
           ))}
         </div>
@@ -50,4 +67,3 @@ export const TributesDisplay = ({
     </div>
   );
 };
-
