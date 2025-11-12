@@ -50,9 +50,11 @@
 }
 
 .label {
-  font-family: "Gabarito", sans-serif;
-  font-size: 16px;
-  color: rgb(48, 231, 215);
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ff00ff;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -70,7 +72,7 @@
   gap: 8px;
   padding: 25px;
   background: rgba(0, 0, 0, 0.3);
-  border: 3px solid rgba(73, 255, 60, 0.3);
+  border: 3px solid #49ff3c;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -105,7 +107,7 @@
   }
 
   &.selected {
-    border-color: #49ff3c;
+    border-color: #ef0eff;
     background: rgba(73, 255, 60, 0.2);
     box-shadow: 0 0 15px rgba(73, 255, 60, 0.3);
 
@@ -128,16 +130,19 @@
 .input {
   padding: 12px 15px;
   background: rgba(0, 0, 0, 0.5);
-  border: 3px solid rgba(48, 231, 215, 0.3);
+  border: 3px solid #49ff3c;
   color: rgb(48, 231, 215);
   font-family: "Gabarito", sans-serif;
   font-size: 16px;
   transition: border-color 0.3s ease;
+  border-radius: 15px;
+  transition: all 0.25s ease-in-out;
 
   &:focus {
     outline: none;
-    border-color: #49ff3c;
+    border-color: #ef0eff;
     box-shadow: 0 0 10px rgba(73, 255, 60, 0.2);
+    border-radius: 0;
   }
 
   &::placeholder {
@@ -225,10 +230,11 @@
 
 .subTitle {
   font-family: monospace;
-  font-size: 20px;
+  font-size: 15px;
   color: #30e783;
   margin-bottom: 15px;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .tributesContainer ul {
