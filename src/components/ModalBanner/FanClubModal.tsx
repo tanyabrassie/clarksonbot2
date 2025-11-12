@@ -45,20 +45,14 @@ export const FanClubModal = ({ isOpen = true, onClose }: FanClubModalProps) => {
           </button>
 
           <div className={styles.modalBody}>
-            <h1 className={styles.modalTitle}>EXCLUSIVE OFFER</h1>
+            <h1 className={styles.modalTitleTop}>LOVE CLARKSONBOT?</h1>
             <h1 className={styles.modalTitle}>JOIN THE FAN CLUB</h1>
-            <div className={styles.modalTitle}>CLARKSON'S BOTS</div>
-            <div className={styles.modalTitle}>You'll get:</div>
+            <div className={styles.modalTitleSub}>You'll get:</div>
             <ul>
               <li>Exclusive Access to ClarksonBot</li>
               <li>Clarksonbot 2026 Calendar & T-Shirt</li>
               <li>Guaranteed Access to Clarksonbot Meetups</li>
             </ul>
-
-            <p className={styles.modalDescription}>
-              Join the Clarkson Bot Fan Club and get exclusive access to premium
-              features!
-            </p>
 
             <Button variant="primary">Join Now</Button>
           </div>

@@ -22,16 +22,20 @@ const tributeLabels: Record<Tribute["type"], string> = {
 
 interface RightContentProps {
   children?: ReactNode;
+  tributesRefreshTrigger?: number;
 }
 
-export const RightContent = ({ children }: RightContentProps) => {
+export const RightContent = ({
+  children,
+  tributesRefreshTrigger,
+}: RightContentProps) => {
   const [tributes, setTributes] = useState<Tribute[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch tributes on mount
+  // Fetch tributes on mount and when refresh trigger changes
   useEffect(() => {
     loadTributes();
-  }, []);
+  }, [tributesRefreshTrigger]);
 
   const loadTributes = async () => {
     try {

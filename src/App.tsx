@@ -15,7 +15,11 @@ import { Marquee } from "./components/Marquee/Marquee";
 import { ClarksonGenerator } from "./pages/ClarksonGenerator";
 import styles from "./pages/ClarksonGenerator.module.scss";
 
-function Home() {
+interface HomeProps {
+  tributesRefreshTrigger: number;
+}
+
+function Home({ tributesRefreshTrigger }: HomeProps) {
   const [showReveal, setShowReveal] = useState(true);
 
   useEffect(() => {
@@ -34,15 +38,23 @@ function Home() {
         <CenterContent>
           <BuildABot />
         </CenterContent>
-        <RightContent></RightContent>
+        <RightContent
+          tributesRefreshTrigger={tributesRefreshTrigger}
+        ></RightContent>
       </MainGrid>
     </>
   );
 }
 
 function App() {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [tributesRefreshTrigger, setTributesRefreshTrigger] = useState(0);
+
+  const handleTributeAdded = () => {
+    // Increment trigger to signal RightContent to refresh
+    setTributesRefreshTrigger((prev) => prev + 1);
+  };
 
   useEffect(() => {
     // Unmount splash after slide-down completes
@@ -69,11 +81,14 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header onTributeAdded={handleTributeAdded} />
       {showSplash && <SplashPage />}
       {showModal && <FanClubModal onClose={() => setShowModal(false)} />}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={<Home tributesRefreshTrigger={tributesRefreshTrigger} />}
+        />
         <Route path="/clarkson-generator" element={<ClarksonGenerator />} />
       </Routes>
       <Marquee />

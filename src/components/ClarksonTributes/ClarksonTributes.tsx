@@ -19,8 +19,11 @@ const tributeLabels: Record<Tribute["type"], string> = {
   money: "Money",
 };
 
-export const ClarksonTributes = () => {
-  const [error, setError] = useState<string | null>(null);
+interface ClarksonTributesProps {
+  onTributeAdded?: () => void;
+}
+
+export const ClarksonTributes = ({ onTributeAdded }: ClarksonTributesProps) => {
   const [submitting, setSubmitting] = useState(false);
 
   // Form state
@@ -35,13 +38,11 @@ export const ClarksonTributes = () => {
 
   const loadTributes = async () => {
     try {
-      setError(null);
       console.log("datasss");
 
       const data = await fetchTributes();
       console.log("data", data);
     } catch (err) {
-      setError("Failed to load tributes. Please try again later.");
       console.error(err);
     }
   };
@@ -56,7 +57,6 @@ export const ClarksonTributes = () => {
 
     try {
       setSubmitting(true);
-      setError(null);
       await addTribute(selectedType, authorName.trim());
 
       // Reload tributes to show the new one
@@ -67,9 +67,13 @@ export const ClarksonTributes = () => {
       setSelectedType("candle");
 
       alert("Tribute added successfully!");
+
+      // Close drawer if callback is provided
+      if (onTributeAdded) {
+        onTributeAdded();
+      }
     } catch (err) {
       console.error(err);
-      setError("Failed to add tribute. Please try again later.");
     } finally {
       setSubmitting(false);
     }
@@ -134,9 +138,6 @@ export const ClarksonTributes = () => {
           </div>
         </form>
       </div>
-
-      {/* Error Message */}
-      {error && <div className={styles.error}>{error}</div>}
     </div>
   );
 };

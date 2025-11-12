@@ -5,7 +5,11 @@ import { BottomBanner } from "../BottomBanner/BottomBanner";
 import { ClarksonTributes } from "../ClarksonTributes/ClarksonTributes";
 import retroCoinUrl from "../../assets/retro_coin.png";
 
-export const Header = () => {
+interface HeaderProps {
+  onTributeAdded?: () => void;
+}
+
+export const Header = ({ onTributeAdded }: HeaderProps) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
@@ -38,6 +42,15 @@ export const Header = () => {
       setDrawerOpen(false);
       setIsClosing(false);
     }, 400); // Match animation duration
+  };
+
+  const handleTributeAdded = () => {
+    // Notify parent component to refresh tributes
+    if (onTributeAdded) {
+      onTributeAdded();
+    }
+    // Close the drawer
+    handleCloseDrawer();
   };
 
   return (
@@ -85,7 +98,7 @@ export const Header = () => {
             }`}
             onClick={(e) => e.stopPropagation()}
           >
-            <ClarksonTributes />
+            <ClarksonTributes onTributeAdded={handleTributeAdded} />
           </div>
         </div>
       )}
