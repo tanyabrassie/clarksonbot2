@@ -174,60 +174,6 @@
   font-family: "Gabarito", sans-serif;
 }
 
-// Tributes Display Section
-.tributesSection {
-  margin-top: 40px;
-}
-
-.sectionTitle {
-  font-family: "Gabarito", sans-serif;
-  font-size: 24px;
-  color: rgb(48, 231, 215);
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.loading,
-.empty {
-  text-align: center;
-  padding: 40px;
-  color: rgba(48, 231, 215, 0.6);
-  font-family: "Gabarito", sans-serif;
-  font-size: 18px;
-}
-
-.tributesGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.tributeCard {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(48, 231, 215, 0.2);
-  border-radius: 10px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  transition: all 0.3s ease;
-
-  &:hover {
-    border-color: #49ff3c;
-    transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(73, 255, 60, 0.2);
-  }
-}
-
-.tributeIcon {
-  width: 64px;
-  height: 64px;
-  filter: drop-shadow(0 2px 8px rgba(73, 255, 60, 0.3));
-}
-
 .subTitle {
   font-family: monospace;
   font-size: 15px;
@@ -251,24 +197,4 @@
     color: rgb(48, 231, 215);
     margin-bottom: 8px;
   }
-}
-
-.tributeInfo {
-  text-align: center;
-  width: 100%;
-}
-
-.tributeType {
-  font-family: "Gabarito", sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: #49ff3c;
-  margin-bottom: 5px;
-}
-
-.tributeAuthor {
-  font-family: "Gabarito", sans-serif;
-  font-size: 14px;
-  color: rgba(48, 231, 215, 0.8);
-  font-style: italic;
 }

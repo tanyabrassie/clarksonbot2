@@ -3,6 +3,7 @@ import styles from "./ClarksonTributes.module.scss";
 import type { Tribute } from "../../types/tribute";
 import { fetchTributes, addTribute } from "../../services/gistService";
 import { Button } from "../Buttons/Button";
+import { TributesDisplay } from "../TributesDisplay";
 import candleIcon from "../../assets/candle.svg";
 import moneyIcon from "../../assets/moneybag.gif";
 import bowingIcon from "../../assets/bowing.gif";
@@ -83,7 +84,7 @@ export const ClarksonTributes = () => {
 
   return (
     <div className={styles.tributesContainer}>
-      <h2 className={styles.title}>Clarkson Tributes</h2>
+      <h2 className={styles.title}>ClarksonBot Tributes</h2>
       <h3 className={styles.subTitle}>Tributes have been proven to make:</h3>
       <ul>
         <li>On call shifts more peaceful</li>
@@ -145,39 +146,12 @@ export const ClarksonTributes = () => {
       {error && <div className={styles.error}>{error}</div>}
 
       {/* Tributes Display */}
-      <div className={styles.tributesSection}>
-        <h3 className={styles.sectionTitle}>
-          All Tributes ({tributes.length})
-        </h3>
-
-        {loading ? (
-          <div className={styles.loading}>Loading tributes...</div>
-        ) : tributes.length === 0 ? (
-          <div className={styles.empty}>
-            No tributes yet. Be the first to leave one!
-          </div>
-        ) : (
-          <div className={styles.tributesGrid}>
-            {tributes.map((tribute, index) => (
-              <div key={index} className={styles.tributeCard}>
-                <img
-                  src={tributeIcons[tribute.type]}
-                  alt={tributeLabels[tribute.type]}
-                  className={styles.tributeIcon}
-                />
-                <div className={styles.tributeInfo}>
-                  <div className={styles.tributeType}>
-                    {tributeLabels[tribute.type]}
-                  </div>
-                  <div className={styles.tributeAuthor}>
-                    from {tribute.author}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+      <TributesDisplay
+        tributes={tributes}
+        loading={loading}
+        tributeIcons={tributeIcons}
+        tributeLabels={tributeLabels}
+      />
     </div>
   );
 };

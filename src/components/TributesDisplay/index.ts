@@ -1,0 +1,2 @@
+export { TributesDisplay } from "./TributesDisplay";
+
