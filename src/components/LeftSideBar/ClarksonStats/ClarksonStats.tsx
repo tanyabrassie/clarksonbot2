@@ -72,7 +72,6 @@ export const ClarksonStats = () => {
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
     >
-      <div className={styles.header}>CLARKSON STATS</div>
       <div className={styles.lines}>
         {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((lineIndex) => (
           <div key={lineIndex} className={styles.lineContainer}>

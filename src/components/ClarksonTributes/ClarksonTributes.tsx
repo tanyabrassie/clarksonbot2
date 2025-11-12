@@ -3,7 +3,6 @@ import styles from "./ClarksonTributes.module.scss";
 import type { Tribute } from "../../types/tribute";
 import { fetchTributes, addTribute } from "../../services/gistService";
 import { Button } from "../Buttons/Button";
-import { TributesDisplay } from "../TributesDisplay";
 import candleIcon from "../../assets/candle.svg";
 import moneyIcon from "../../assets/moneybag.gif";
 import bowingIcon from "../../assets/bowing.gif";
@@ -21,8 +20,6 @@ const tributeLabels: Record<Tribute["type"], string> = {
 };
 
 export const ClarksonTributes = () => {
-  const [tributes, setTributes] = useState<Tribute[]>([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -38,18 +35,14 @@ export const ClarksonTributes = () => {
 
   const loadTributes = async () => {
     try {
-      setLoading(true);
       setError(null);
       console.log("datasss");
 
       const data = await fetchTributes();
       console.log("data", data);
-      setTributes(data);
     } catch (err) {
       setError("Failed to load tributes. Please try again later.");
       console.error(err);
-    } finally {
-      setLoading(false);
     }
   };
 

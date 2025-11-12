@@ -18,12 +18,22 @@
 .container {
   width: 100%;
   background-color: #95ffe9;
+  box-shadow: 2px 2px 12px #5700ff;
   border: 3px solid black;
   padding: 30px 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 40px;
+
+  button {
+    transition: font-size 0.3s ease, background-color 0.3s ease;
+  }
+
+  &:hover button {
+    font-size: calc(20px * 1.4);
+    background-color: #cdff2c;
+  }
 }
 
 .productCard {
