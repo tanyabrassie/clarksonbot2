@@ -3,6 +3,7 @@ import styles from "./ClarksonTributes.module.scss";
 import type { Tribute } from "../../types/tribute";
 import { fetchTributes, addTribute } from "../../services/gistService";
 import { Button } from "../Buttons/Button";
+import { AlertModal } from "./AlertModal";
 import candleIcon from "../../assets/candle.svg";
 import moneyIcon from "../../assets/moneybag.gif";
 import bowingIcon from "../../assets/bowing.gif";
@@ -25,6 +26,10 @@ interface ClarksonTributesProps {
 
 export const ClarksonTributes = ({ onTributeAdded }: ClarksonTributesProps) => {
   const [submitting, setSubmitting] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [shouldCloseDrawerAfterAlert, setShouldCloseDrawerAfterAlert] =
+    useState(false);
 
   // Form state
   const [selectedType, setSelectedType] = useState<Tribute["type"]>("candle");
@@ -46,11 +51,27 @@ export const ClarksonTributes = ({ onTributeAdded }: ClarksonTributesProps) => {
     }
   };
 
+  const showAlert = (message: string) => {
+    setAlertMessage(message);
+    setIsAlertOpen(true);
+  };
+
+  const closeAlert = () => {
+    setIsAlertOpen(false);
+    setAlertMessage("");
+
+    // Close drawer if we're supposed to after alert
+    if (shouldCloseDrawerAfterAlert && onTributeAdded) {
+      setShouldCloseDrawerAfterAlert(false);
+      onTributeAdded();
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!authorName.trim()) {
-      alert("Please enter your name");
+      showAlert("Please enter your name");
       return;
     }
 
@@ -65,14 +86,12 @@ export const ClarksonTributes = ({ onTributeAdded }: ClarksonTributesProps) => {
       setAuthorName("");
       setSelectedType("candle");
 
-      alert("Tribute added successfully!");
-
-      // Close drawer if callback is provided
-      if (onTributeAdded) {
-        onTributeAdded();
-      }
+      // Set flag to close drawer after alert is dismissed
+      setShouldCloseDrawerAfterAlert(true);
+      showAlert("Tribute added successfully!");
     } catch (err) {
       console.error(err);
+      showAlert("Failed to add tribute. Please try again later.");
     } finally {
       setSubmitting(false);
     }
@@ -137,6 +156,13 @@ export const ClarksonTributes = ({ onTributeAdded }: ClarksonTributesProps) => {
           </div>
         </form>
       </div>
+
+      {/* Alert Modal */}
+      <AlertModal
+        message={alertMessage}
+        isOpen={isAlertOpen}
+        onClose={closeAlert}
+      />
     </div>
   );
 };
