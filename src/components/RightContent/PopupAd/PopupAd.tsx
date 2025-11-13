@@ -22,16 +22,16 @@ export const PopupAd = () => {
             />
           </div>
           <div className={styles.productTitle}>
-            clarkson
+            clarksonbot
             <br />
-            bot tee-shirt
+            soft tee-shirt
           </div>
           <Button
             variant="primary"
             className={teeShirtSold ? styles.soldOut : ""}
             onClick={() => setTeeShirtSold(true)}
           >
-            {teeShirtSold ? "SOLD OUT" : "BUY NOW"}
+            {teeShirtSold ? "SOLD OUT :(" : "BUY NOW"}
           </Button>
         </div>
 
@@ -47,14 +47,14 @@ export const PopupAd = () => {
           <div className={styles.productTitle}>
             clarkson bot
             <br />
-            mug!
+            porcelain mug!
           </div>
           <Button
             variant="primary"
             className={mugSold ? styles.soldOut : ""}
             onClick={() => setMugSold(true)}
           >
-            {mugSold ? "SOLD OUT" : "GET THIS"}
+            {mugSold ? "SOLD OUT :(" : "GET THIS"}
           </Button>
         </div>
       </div>

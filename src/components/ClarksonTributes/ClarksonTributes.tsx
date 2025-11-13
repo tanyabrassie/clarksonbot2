@@ -32,7 +32,6 @@ export const ClarksonTributes = ({ onTributeAdded }: ClarksonTributesProps) => {
 
   // Fetch tributes on mount
   useEffect(() => {
-    console.log("hellooooo");
     loadTributes();
   }, []);
 
@@ -83,7 +82,7 @@ export const ClarksonTributes = ({ onTributeAdded }: ClarksonTributesProps) => {
     <div className={styles.tributesContainer}>
       <h2 className={styles.title}>ClarksonBot Tributes</h2>
       <h3 className={styles.subTitle}>Tributes have been proven to make:</h3>
-      <ul>
+      <ul className={styles.benefitsList}>
         <li>On call shifts more peaceful</li>
         <li>Code to compile faster</li>
         <li>Marshmallow tests pass more frequently</li>

@@ -17,6 +17,7 @@
   position: sticky;
   top: 30px;
   width: 80%;
+  min-width: 220px;
   container-type: inline-size;
   margin: 25px auto;
   background-color: #000000b5;
@@ -77,9 +78,17 @@
 
 .colorOptions {
   display: flex;
-  gap: 40px;
+  gap: 20px;
   justify-content: center;
   margin-top: 30px;
+
+  @container (min-width: 200px) {
+    gap: 30px;
+  }
+
+  @container (min-width: 300px) {
+    gap: 40px;
+  }
 }
 
 .colorOption {
@@ -90,25 +99,54 @@
 }
 
 .label {
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 2px;
+
+  @container (min-width: 200px) {
+    font-size: 15px;
+  }
+
+  @container (min-width: 300px) {
+    font-size: 18px;
+  }
 }
 
 .fillCircle {
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: #d946ef;
+
+  @container (min-width: 200px) {
+    width: 60px;
+    height: 60px;
+  }
+
+  @container (min-width: 300px) {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 .strokeCircle {
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: transparent;
-  border: 4px solid #d946ef;
+  border: 3px solid #d946ef;
   position: relative;
+
+  @container (min-width: 200px) {
+    width: 60px;
+    height: 60px;
+  }
+
+  @container (min-width: 300px) {
+    width: 80px;
+    height: 80px;
+    border: 4px solid #d946ef;
+  }
 }
 
 .noStroke {
@@ -164,11 +202,4 @@
     width: 300vmax;
     height: 300vmax;
   }
-}
-
-.revealing {
-  // No longer needed
-}
-
-.mainContainer {
 }
