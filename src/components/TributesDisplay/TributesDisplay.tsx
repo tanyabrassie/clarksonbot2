@@ -1,5 +1,7 @@
+import { useState, useEffect } from "react";
 import styles from "./TributesDisplay.module.scss";
 import type { Tribute } from "../../types/tribute";
+import { AlertModal } from "../ClarksonTributes/AlertModal";
 import clarksonBotGif from "../../assets/clarkson-bot.gif";
 import coinIcon from "../../assets/retro_coin.png";
 
@@ -15,6 +17,25 @@ export const TributesDisplay = ({
   loading,
   tributeIcons,
 }: TributesDisplayProps) => {
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 800);
+    };
+
+    // Check on mount
+    checkScreenSize();
+
+    // Add resize listener
+    window.addEventListener("resize", checkScreenSize);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, []);
+
   return (
     <div className={styles.tributesSection}>
       <div className={styles.botsHeader}>
@@ -64,6 +85,11 @@ export const TributesDisplay = ({
           ))}
         </div>
       )}
+
+      <AlertModal
+        message="The Next Gen ClarksonBot Workbench requires a desktop screen."
+        isOpen={isSmallScreen}
+      />
     </div>
   );
 };

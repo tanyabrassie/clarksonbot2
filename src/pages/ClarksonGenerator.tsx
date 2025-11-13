@@ -305,7 +305,10 @@ const MainContainer = ({
 
   return (
     <div className={styles.mainContainer}>
-      <ClarksonBotSvg ref={svgRef} style={{ opacity: 0.8 }} />
+      <ClarksonBotSvg
+        ref={svgRef}
+        style={{ opacity: 0.8, filter: `blur(1px)` }}
+      />
     </div>
   );
 };

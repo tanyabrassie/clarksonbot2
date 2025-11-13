@@ -4,7 +4,7 @@ import { Button } from "../../Buttons/Button";
 
 interface AlertModalProps {
   message: string;
-  onClose: () => void;
+  onClose?: () => void;
   isOpen: boolean;
 }
 
@@ -30,11 +30,13 @@ export const AlertModal = ({ message, onClose, isOpen }: AlertModalProps) => {
         <div className={styles.modalBody}>
           <p className={styles.message}>{message}</p>
         </div>
-        <div className={styles.modalFooter}>
-          <Button variant="primary" onClick={onClose}>
-            OK
-          </Button>
-        </div>
+        {onClose && (
+          <div className={styles.modalFooter}>
+            <Button variant="primary" onClick={onClose}>
+              OK
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
