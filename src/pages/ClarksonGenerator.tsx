@@ -3,6 +3,45 @@ import ClarksonBotSvg from "../assets/clarksonbot.svg?react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../components/Buttons/Button";
 
+// Helper function to convert RGB to hex
+const rgbToHex = (rgb: string): string => {
+  // Handle transparent/none cases - return black as default
+  if (
+    !rgb ||
+    rgb === "none" ||
+    rgb === "transparent" ||
+    rgb === "rgba(0, 0, 0, 0)"
+  ) {
+    return "#000000";
+  }
+
+  // Handle rgb() format
+  const rgbMatch = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+  if (rgbMatch) {
+    const r = parseInt(rgbMatch[1]);
+    const g = parseInt(rgbMatch[2]);
+    const b = parseInt(rgbMatch[3]);
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+  }
+
+  // Handle rgba() format
+  const rgbaMatch = rgb.match(/^rgba\((\d+),\s*(\d+),\s*(\d+),\s*[\d.]+\)$/);
+  if (rgbaMatch) {
+    const r = parseInt(rgbaMatch[1]);
+    const g = parseInt(rgbaMatch[2]);
+    const b = parseInt(rgbaMatch[3]);
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+  }
+
+  // If it's already hex, return as is
+  if (rgb.startsWith("#")) {
+    return rgb;
+  }
+
+  // Fallback to black for any other cases
+  return "#000000";
+};
+
 interface ToolBarProps {
   selectedElement: string | null;
   fillColor: string;
@@ -83,7 +122,7 @@ const ToolBar = ({
           <input
             ref={colorInputRef}
             type="color"
-            value={fillColor.startsWith("rgb") ? "#000000" : fillColor}
+            value={rgbToHex(fillColor)}
             onChange={handleColorChange}
             style={{ display: "none" }}
           />
@@ -103,7 +142,7 @@ const ToolBar = ({
           <input
             ref={strokeColorInputRef}
             type="color"
-            value={strokeColor.startsWith("rgb") ? "#000000" : strokeColor}
+            value={rgbToHex(strokeColor)}
             onChange={handleStrokeColorChange}
             style={{ display: "none" }}
           />
