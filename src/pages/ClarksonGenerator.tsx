@@ -470,10 +470,7 @@ const MainContainer = ({
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
     >
-      <ClarksonBotSvg
-        ref={svgRef}
-        style={{ opacity: 0.8, filter: `blur(1pxT)` }}
-      />
+      <ClarksonBotSvg ref={svgRef} style={{ opacity: 0.8 }} />
       {uploadedImages.map((image) => (
         <div
           key={image.id}
