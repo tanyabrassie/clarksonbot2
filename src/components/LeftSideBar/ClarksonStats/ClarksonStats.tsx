@@ -73,7 +73,7 @@ export const ClarksonStats = () => {
       onMouseLeave={handleMouseUp}
     >
       <div className={styles.lines}>
-        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((lineIndex) => (
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((lineIndex) => (
           <div key={lineIndex} className={styles.lineContainer}>
             <div className={styles.line} />
             {[0, 1].map((nodeIndex) => {
