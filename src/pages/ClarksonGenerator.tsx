@@ -629,17 +629,32 @@ export const ClarksonGenerator = () => {
       (element as SVGElement).style.filter = "";
     });
 
-    // Add uploaded images to the SVG
+    // Get the SVG's bounding box and viewBox for coordinate conversion
+    const svgRect = svgRef.current.getBoundingClientRect();
+    const viewBox = svgRef.current.viewBox.baseVal;
+
+    // Calculate the scale factor between screen pixels and SVG coordinates
+    const scaleX = viewBox.width / svgRect.width;
+    const scaleY = viewBox.height / svgRect.height;
+
+    // Add uploaded images to the SVG with proper coordinate conversion
     uploadedImages.forEach((image) => {
       const imageElement = document.createElementNS(
         "http://www.w3.org/2000/svg",
         "image"
       );
+
+      // Convert pixel coordinates to SVG coordinates
+      const svgX = viewBox.x + image.position.x * scaleX;
+      const svgY = viewBox.y + image.position.y * scaleY;
+      const svgWidth = image.size.width * scaleX;
+      const svgHeight = image.size.height * scaleY;
+
       imageElement.setAttribute("href", image.data);
-      imageElement.setAttribute("x", image.position.x.toString());
-      imageElement.setAttribute("y", image.position.y.toString());
-      imageElement.setAttribute("width", image.size.width.toString());
-      imageElement.setAttribute("height", image.size.height.toString());
+      imageElement.setAttribute("x", svgX.toString());
+      imageElement.setAttribute("y", svgY.toString());
+      imageElement.setAttribute("width", svgWidth.toString());
+      imageElement.setAttribute("height", svgHeight.toString());
       imageElement.setAttribute("preserveAspectRatio", "none");
       svgClone.appendChild(imageElement);
     });
