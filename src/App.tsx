@@ -92,7 +92,9 @@ function App() {
         <Route path="/clarkson-generator" element={<ClarksonGenerator />} />
       </Routes>
       <Marquee />
-      <BottomBanner />
+      <div className={styles.bannerContainer}>
+        <BottomBanner />
+      </div>
     </>
   );
 }

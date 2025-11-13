@@ -58,7 +58,7 @@ export const TributesDisplay = ({
                 className={styles.tributeIcon}
               />
               <span className={styles.tributeText}>
-                FROM {tribute.author.toUpperCase()}
+                - {tribute.author.toUpperCase()}
               </span>
             </div>
           ))}

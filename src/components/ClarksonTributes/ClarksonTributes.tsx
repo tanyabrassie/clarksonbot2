@@ -71,7 +71,7 @@ export const ClarksonTributes = ({ onTributeAdded }: ClarksonTributesProps) => {
     e.preventDefault();
 
     if (!authorName.trim()) {
-      showAlert("Please enter your name");
+      showAlert("Please enter your message.");
       return;
     }
 
@@ -135,14 +135,14 @@ export const ClarksonTributes = ({ onTributeAdded }: ClarksonTributesProps) => {
 
           <div className={styles.formGroup}>
             <label htmlFor="author-name" className={styles.label}>
-              Your Name:
+              Tribute Message:
             </label>
             <input
               id="author-name"
               type="text"
               value={authorName}
               onChange={(e) => setAuthorName(e.target.value)}
-              placeholder="Enter your name"
+              placeholder="Enter your message"
               className={styles.input}
               disabled={submitting}
               maxLength={50}
