@@ -105,7 +105,7 @@ function App() {
     // Splash completes at 17140ms, add 3000ms = 20140ms
     const modalTimer = setTimeout(() => {
       setShowModal(true);
-    }, 20140);
+    }, 23140);
 
     return () => clearTimeout(modalTimer);
   }, []);
