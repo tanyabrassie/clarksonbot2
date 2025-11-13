@@ -10,12 +10,17 @@ interface FanClubModalProps {
 
 export const FanClubModal = ({ isOpen = true, onClose }: FanClubModalProps) => {
   const [isClosing, setIsClosing] = useState(false);
+  const [hasJoined, setHasJoined] = useState(false);
 
   const handleClose = () => {
     setIsClosing(true);
     setTimeout(() => {
       onClose?.(false);
     }, 600);
+  };
+
+  const handleJoinClick = () => {
+    setHasJoined(true);
   };
 
   if (!isOpen) return null;
@@ -54,7 +59,9 @@ export const FanClubModal = ({ isOpen = true, onClose }: FanClubModalProps) => {
               <li>Guaranteed Access to Clarksonbot Meetups</li>
             </ul>
 
-            <Button variant="primary">Join Now</Button>
+            <Button variant="primary" onClick={handleJoinClick}>
+              {hasJoined ? "Welcome to the Club!" : "Join Now"}
+            </Button>
           </div>
         </div>
       </div>
