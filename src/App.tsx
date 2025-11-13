@@ -49,7 +49,7 @@ function Home({ tributesRefreshTrigger }: HomeProps) {
 }
 
 function App() {
-  const [showStartButton, setShowStartButton] = useState(true);
+  const [showStartButton, setShowStartButton] = useState(false);
   const [showSplash, setShowSplash] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [tributesRefreshTrigger, setTributesRefreshTrigger] = useState(0);

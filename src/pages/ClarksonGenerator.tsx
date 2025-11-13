@@ -49,6 +49,10 @@ interface ToolBarProps {
   onFillColorChange: (color: string) => void;
   onStrokeColorChange: (color: string) => void;
   onExport: () => void;
+  uploadedImages: UploadedImage[];
+  onImageUpload: (imageData: string) => void;
+  onImageChange: (id: string, imageData: string) => void;
+  onImageDelete: (id: string) => void;
 }
 
 const ToolBar = ({
@@ -58,10 +62,16 @@ const ToolBar = ({
   onFillColorChange,
   onStrokeColorChange,
   onExport,
+  uploadedImages,
+  onImageUpload,
+  onImageChange,
+  onImageDelete,
 }: ToolBarProps) => {
   const [showFillPicker, setShowFillPicker] = useState(false);
   const colorInputRef = useRef<HTMLInputElement>(null);
   const strokeColorInputRef = useRef<HTMLInputElement>(null);
+  const newImageInputRef = useRef<HTMLInputElement>(null);
+  const imageInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({});
 
   // Extract the name after "clarkson-" prefix
   const elementName = selectedElement
@@ -102,6 +112,43 @@ const ToolBar = ({
     const newColor = e.target.value;
     onStrokeColorChange(newColor);
   };
+
+  const handleNewImageUploadClick = () => {
+    newImageInputRef.current?.click();
+  };
+
+  const handleChangeImageClick = (id: string) => {
+    imageInputRefs.current[id]?.click();
+  };
+
+  const handleNewImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && file.type.startsWith("image/")) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const imageData = event.target?.result as string;
+        onImageUpload(imageData);
+      };
+      reader.readAsDataURL(file);
+    }
+    // Reset input so same file can be uploaded again
+    e.target.value = "";
+  };
+
+  const handleExistingImageChange =
+    (id: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (file && file.type.startsWith("image/")) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const imageData = event.target?.result as string;
+          onImageChange(id, imageData);
+        };
+        reader.readAsDataURL(file);
+      }
+      // Reset input so same file can be uploaded again
+      e.target.value = "";
+    };
 
   return (
     <div className={styles.toolBar}>
@@ -148,6 +195,59 @@ const ToolBar = ({
           />
         </div>
       </div>
+
+      {/* Image Upload Section */}
+      <div className={styles.imageUploadSection}>
+        <div className={styles.label}>ASSETS</div>
+
+        {/* Render all uploaded images */}
+        {uploadedImages.map((image) => (
+          <div key={image.id} className={styles.imageControls}>
+            <div className={styles.imagePreview}>
+              <img src={image.data} alt="Uploaded" />
+            </div>
+            <div className={styles.imageButtons}>
+              <button
+                onClick={() => handleChangeImageClick(image.id)}
+                className={styles.changeButton}
+              >
+                CHANGE
+              </button>
+              <button
+                onClick={() => onImageDelete(image.id)}
+                className={styles.deleteButton}
+              >
+                DELETE
+              </button>
+            </div>
+            <input
+              ref={(el) => {
+                imageInputRefs.current[image.id] = el;
+              }}
+              type="file"
+              accept="image/*"
+              onChange={handleExistingImageChange(image.id)}
+              style={{ display: "none" }}
+            />
+          </div>
+        ))}
+
+        {/* Always show upload button */}
+        <button
+          onClick={handleNewImageUploadClick}
+          className={styles.uploadButton}
+        >
+          UPLOAD ASSET
+        </button>
+        <input
+          ref={newImageInputRef}
+          type="file"
+          accept="image/*"
+          onChange={handleNewImageChange}
+          style={{ display: "none" }}
+        />
+      </div>
+
       <Button className={styles.exportButton} onClick={onExport}>
         EXPORT BOT
       </Button>
@@ -162,6 +262,9 @@ interface MainContainerProps {
   setStrokeColor: (color: string) => void;
   selectedElementRef: React.MutableRefObject<Element | null>;
   svgRef: React.RefObject<SVGSVGElement | null>;
+  uploadedImages: UploadedImage[];
+  onImagePositionChange: (id: string, x: number, y: number) => void;
+  onImageSizeChange: (id: string, width: number, height: number) => void;
 }
 
 const MainContainer = ({
@@ -170,8 +273,15 @@ const MainContainer = ({
   setStrokeColor,
   selectedElementRef,
   svgRef,
+  uploadedImages,
+  onImagePositionChange,
+  onImageSizeChange,
 }: MainContainerProps) => {
   const previousSelectedRef = useRef<Element | null>(null);
+  const [draggingImageId, setDraggingImageId] = useState<string | null>(null);
+  const [resizingImageId, setResizingImageId] = useState<string | null>(null);
+  const dragStart = useRef({ x: 0, y: 0 });
+  const resizeStart = useRef({ x: 0, y: 0, width: 0, height: 0 });
 
   useEffect(() => {
     if (svgRef.current) {
@@ -303,21 +413,115 @@ const MainContainer = ({
     svgRef,
   ]);
 
+  // Drag handlers for uploaded images
+  const handleImageMouseDown =
+    (id: string, image: UploadedImage) => (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setDraggingImageId(id);
+      dragStart.current = {
+        x: e.clientX - image.position.x,
+        y: e.clientY - image.position.y,
+      };
+    };
+
+  // Resize handlers for uploaded images
+  const handleResizeMouseDown =
+    (id: string, image: UploadedImage) => (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setResizingImageId(id);
+      resizeStart.current = {
+        x: e.clientX,
+        y: e.clientY,
+        width: image.size.width,
+        height: image.size.height,
+      };
+    };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (draggingImageId) {
+      const newX = e.clientX - dragStart.current.x;
+      const newY = e.clientY - dragStart.current.y;
+      onImagePositionChange(draggingImageId, newX, newY);
+    } else if (resizingImageId) {
+      const deltaX = e.clientX - resizeStart.current.x;
+      const deltaY = e.clientY - resizeStart.current.y;
+
+      // Use the larger delta to maintain aspect ratio
+      const delta = Math.max(deltaX, deltaY);
+
+      const newWidth = Math.max(50, resizeStart.current.width + delta);
+      const newHeight = Math.max(50, resizeStart.current.height + delta);
+
+      onImageSizeChange(resizingImageId, newWidth, newHeight);
+    }
+  };
+
+  const handleMouseUp = () => {
+    setDraggingImageId(null);
+    setResizingImageId(null);
+  };
+
   return (
-    <div className={styles.mainContainer}>
+    <div
+      className={styles.mainContainer}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+    >
       <ClarksonBotSvg
         ref={svgRef}
         style={{ opacity: 0.8, filter: `blur(1pxT)` }}
       />
+      {uploadedImages.map((image) => (
+        <div
+          key={image.id}
+          className={styles.uploadedImageContainer}
+          style={{
+            left: `${image.position.x}px`,
+            top: `${image.position.y}px`,
+            width: `${image.size.width}px`,
+            height: `${image.size.height}px`,
+          }}
+        >
+          <img
+            src={image.data}
+            alt="Uploaded"
+            className={styles.uploadedImage}
+            style={{
+              cursor: draggingImageId === image.id ? "grabbing" : "grab",
+            }}
+            onMouseDown={handleImageMouseDown(image.id, image)}
+            draggable={false}
+          />
+          <div
+            className={styles.resizeHandle}
+            onMouseDown={handleResizeMouseDown(image.id, image)}
+            style={{
+              cursor:
+                resizingImageId === image.id ? "nwse-resize" : "nwse-resize",
+            }}
+          />
+        </div>
+      ))}
     </div>
   );
 };
+
+interface UploadedImage {
+  id: string;
+  data: string;
+  position: { x: number; y: number };
+  size: { width: number; height: number };
+}
 
 export const ClarksonGenerator = () => {
   const [selectedElement, setSelectedElement] = useState<string | null>(null);
   const [fillColor, setFillColor] = useState<string>("#d946ef");
   const [strokeColor, setStrokeColor] = useState<string>("#d946ef");
   const [showReveal, setShowReveal] = useState(true);
+  const [uploadedImages, setUploadedImages] = useState<UploadedImage[]>([]);
   const selectedElementRef = useRef<Element | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
@@ -374,6 +578,44 @@ export const ClarksonGenerator = () => {
     }
   };
 
+  const handleImageUpload = (imageData: string) => {
+    const newImage: UploadedImage = {
+      id: `image-${Date.now()}`,
+      data: imageData,
+      position: { x: 100, y: 100 },
+      size: { width: 200, height: 200 },
+    };
+    setUploadedImages([...uploadedImages, newImage]);
+  };
+
+  const handleImageChange = (id: string, imageData: string) => {
+    setUploadedImages(
+      uploadedImages.map((img) =>
+        img.id === id ? { ...img, data: imageData } : img
+      )
+    );
+  };
+
+  const handleImageDelete = (id: string) => {
+    setUploadedImages(uploadedImages.filter((img) => img.id !== id));
+  };
+
+  const handleImagePositionChange = (id: string, x: number, y: number) => {
+    setUploadedImages(
+      uploadedImages.map((img) =>
+        img.id === id ? { ...img, position: { x, y } } : img
+      )
+    );
+  };
+
+  const handleImageSizeChange = (id: string, width: number, height: number) => {
+    setUploadedImages(
+      uploadedImages.map((img) =>
+        img.id === id ? { ...img, size: { width, height } } : img
+      )
+    );
+  };
+
   const handleExportSvg = () => {
     if (!svgRef.current) return;
 
@@ -385,6 +627,21 @@ export const ClarksonGenerator = () => {
       (element as SVGElement).style.cursor = "";
       (element as SVGElement).style.transition = "";
       (element as SVGElement).style.filter = "";
+    });
+
+    // Add uploaded images to the SVG
+    uploadedImages.forEach((image) => {
+      const imageElement = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "image"
+      );
+      imageElement.setAttribute("href", image.data);
+      imageElement.setAttribute("x", image.position.x.toString());
+      imageElement.setAttribute("y", image.position.y.toString());
+      imageElement.setAttribute("width", image.size.width.toString());
+      imageElement.setAttribute("height", image.size.height.toString());
+      imageElement.setAttribute("preserveAspectRatio", "none");
+      svgClone.appendChild(imageElement);
     });
 
     // Serialize the SVG to a string
@@ -417,6 +674,10 @@ export const ClarksonGenerator = () => {
           onFillColorChange={handleFillColorChange}
           onStrokeColorChange={handleStrokeColorChange}
           onExport={handleExportSvg}
+          uploadedImages={uploadedImages}
+          onImageUpload={handleImageUpload}
+          onImageChange={handleImageChange}
+          onImageDelete={handleImageDelete}
         />
         <MainContainer
           selectedElement={selectedElement}
@@ -425,6 +686,9 @@ export const ClarksonGenerator = () => {
           setStrokeColor={setStrokeColor}
           selectedElementRef={selectedElementRef}
           svgRef={svgRef}
+          uploadedImages={uploadedImages}
+          onImagePositionChange={handleImagePositionChange}
+          onImageSizeChange={handleImageSizeChange}
         />
       </div>
     </>
