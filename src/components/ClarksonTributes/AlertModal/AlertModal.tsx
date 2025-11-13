@@ -26,9 +26,7 @@ export const AlertModal = ({ message, onClose, isOpen }: AlertModalProps) => {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
-        <div className={styles.modalHeader}>
-          <h2 className={styles.modalTitle}>Alert</h2>
-        </div>
+        <div className={styles.modalHeader}></div>
         <div className={styles.modalBody}>
           <p className={styles.message}>{message}</p>
         </div>
@@ -41,4 +39,3 @@ export const AlertModal = ({ message, onClose, isOpen }: AlertModalProps) => {
     </div>
   );
 };
-
