@@ -23,7 +23,7 @@
   backdrop-filter: blur(10px);
   border: 0008ff;
   border-radius: 10px;
-  padding: 25px;
+  padding: 5px;
   margin-bottom: 40px;
 }
 
@@ -33,7 +33,6 @@
   font-size: 24px;
   color: #49ff3c;
   margin-bottom: 20px;
-  text-align: center;
 }
 
 .benefitsList {
@@ -43,7 +42,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
 }
 
 .formGroup {
@@ -96,16 +95,17 @@
   }
 
   &:hover:not(:disabled) {
-    border-color: #49ff3c;
-    background: rgba(73, 255, 60, 0.1);
-    transform: translateY(-2px);
+    border-color: #ef0eff;
+    background: rgba(73, 255, 60, 0.2);
+    box-shadow: 0 0 15px rgba(73, 255, 60, 0.3);
 
     img {
-      filter: grayscale(0%);
+      filter: grayscale(0%) drop-shadow(0 0 5px rgba(73, 255, 60, 0.5));
     }
 
     span {
-      color: rgb(48, 231, 215);
+      color: #49ff3c;
+      font-weight: 600;
     }
   }
 
